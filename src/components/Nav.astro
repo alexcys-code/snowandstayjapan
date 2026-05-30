@@ -1,0 +1,18 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+const { active = '' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href={base}>🇯🇵 <span data-i18n="siteTitle">Japan 2026</span></a>
+    <ul class="nav-links">
+      <li><a href={base} class={active === 'home' ? 'active' : ''} data-i18n="navOverview">Overview</a></li>
+      <li><a href={`${base}yatsugatake/`} class={active === 'yatsugatake' ? 'active' : ''}>Yatsugatake</a></li>
+      <li><a href={`${base}nearby/`} class={active === 'nearby' ? 'active' : ''} data-i18n="navNearby">Nearby Resorts</a></li>
+      <li><a href={`${base}about/`} class={active === 'about' ? 'active' : ''} data-i18n="navAbout">About</a></li>
+    </ul>
+    <LanguageSwitcher />
+  </div>
+</nav>

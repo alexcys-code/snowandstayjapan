@@ -1,0 +1,35 @@
+---
+interface Props {
+  footerText: string;
+  repoUrl: string;
+}
+const { footerText, repoUrl } = Astro.props;
+---
+<footer>
+  <div class="container footer-inner">
+    <p class="footer-text">{footerText}</p>
+    <p class="footer-sub">Built with Astro · Hosted on <a href={repoUrl} target="_blank" rel="noopener">GitHub Pages</a></p>
+  </div>
+</footer>
+
+<style>
+  footer { border-top: 1px solid var(--cream-dark); padding: 2rem; }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+  }
+  .footer-text { font-family: var(--font-display); font-size: 1rem; color: var(--ink-muted); }
+  .footer-sub { font-size: 0.75rem; color: var(--ink-faint); }
+  .footer-sub a {
+    color: var(--pt-green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-weight: 500;
+  }
+  .footer-sub a:hover { text-decoration-thickness: 2px; }
+</style>

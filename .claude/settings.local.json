@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(echo $PATH)",
+      "Bash(npm --version)",
+      "Bash(brew list:*)",
+      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$PATH\")",
+      "Bash(brew install:*)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Bash(/opt/homebrew/bin/npm --version)",
+      "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
+      "Bash(npm install:*)",
+      "Bash(chmod +x /Users/alexcys/Documents/Claude/Projects/Website/dev.sh)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(npx skills:*)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/alexcys/.nvm/versions/**)",
+      "Bash(export PATH=$PATH:/usr/local/bin:/opt/homebrew/bin:/opt/homebrew/opt/node/bin)",
+      "Read(//opt/homebrew/**)",
+      "Bash(export PATH=\"$PATH:/opt/homebrew/bin\")",
+      "WebFetch(domain:hub.twinkleai.tw)",
+      "WebSearch",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(pip install:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(pip3 install:*)",
+      "Bash(/usr/local/bin/npm run:*)",
+      "Bash(ls /usr/local/bin/node*)",
+      "Bash(ls ~/.nvm/versions/node/*/bin/npm)",
+      "Bash(ls /opt/homebrew/bin/node*)",
+      "Read(//Users/alexcys/**)",
+      "Bash(/opt/homebrew/bin/npm run:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "pika-mcp"
+  ]
+}

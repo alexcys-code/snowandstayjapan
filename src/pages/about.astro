@@ -1,0 +1,157 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About" description="About this Japan 2026 trip guide">
+  <Nav active="about" />
+
+  <header class="page-hero tile-pattern">
+    <div class="hero-inner">
+      <p class="hero-eyebrow" data-i18n="navAbout">About</p>
+      <h1 class="hero-title">Japan 2026</h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-block">
+            <h2 class="block-title">About this guide</h2>
+            <p class="block-body">
+              This site is a personal travel planning guide for a Spring 2026 trip to Japan, covering
+              two destinations — the alpine meadows of Yatsugatake and the electric streets of Tokyo.
+              It was built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> and
+              hosted on GitHub Pages, inspired by <a href="https://mariatta.ca/portugal-trip/" target="_blank" rel="noopener">Mariatta's Portugal trip guide</a>.
+            </p>
+          </div>
+
+          <div class="about-block">
+            <h2 class="block-title">The itinerary</h2>
+            <p class="block-body">
+              8 nights total across two stops:<br /><br />
+              <strong>Yatsugatake</strong> — May 1–4, 3 nights in the highland plateau around Kobuchizawa and Kiyosato.<br /><br />
+              <strong>Tokyo</strong> — May 4–9, 5 nights exploring temples, neighbourhoods, ramen, and everything in between.
+            </p>
+          </div>
+
+          <div class="about-block">
+            <h2 class="block-title">Languages</h2>
+            <p class="block-body">
+              This guide is available in three languages — English, Traditional Chinese (繁體中文), and Japanese (日本語).
+              Use the tabs in the navigation bar to switch between them at any time. Your preference is saved automatically.
+            </p>
+          </div>
+
+          <div class="about-block">
+            <h2 class="block-title">Built with</h2>
+            <ul class="tech-list">
+              <li><a href="https://astro.build" target="_blank" rel="noopener">Astro</a> — static site framework</li>
+              <li><a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> — interactive maps</li>
+              <li><a href="https://www.openstreetmap.org" target="_blank" rel="noopener">OpenStreetMap</a> — map tiles</li>
+              <li>Cormorant Garamond & Jost — typography</li>
+              <li>GitHub Pages — hosting</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer footerText="🇯🇵 Japan Trip · Spring 2026" repoUrl="https://github.com/yourusername/japan-trip" />
+</Layout>
+
+<style>
+  .page-hero {
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pt-green);
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+
+  .section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    gap: 2rem;
+  }
+
+  .about-block {
+    padding: 2rem;
+    background: white;
+    border: 1px solid var(--cream-dark);
+    border-radius: var(--radius-lg);
+  }
+
+  .block-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .block-body {
+    font-size: 0.925rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+
+  .block-body a {
+    color: var(--pt-green);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .block-body a:hover { text-decoration-thickness: 2px; }
+
+  .tech-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .tech-list li {
+    font-size: 0.925rem;
+    color: var(--ink-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+  .tech-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--pt-green);
+    font-size: 0.8rem;
+  }
+  .tech-list a {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .tech-list a:hover { color: var(--pt-green); }
+
+  @media (max-width: 600px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .section { padding: 3rem 1.25rem; }
+  }
+</style>
