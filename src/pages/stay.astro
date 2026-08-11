@@ -76,6 +76,7 @@ const days = [
         <span data-i18n="houseT2">Whole house, one group</span>
         <span data-i18n="houseT3">25 min from the station</span>
       </div>
+      <img class="house__shot" src={`${base}img/bedroom.jpg`} alt="A bedroom in the kominka — timber beams and made-up beds" loading="lazy" />
     </div>
   </section>
 
@@ -83,7 +84,7 @@ const days = [
 
   <section class="day" data-enter="split" aria-label="The same afternoon">
     <div class="day__col col-a">
-      <img class="day__shot" src={`${base}img/pilatus.webp`} alt="A long, gentle beginner run at Pilatus Tateshina" loading="lazy" />
+      <img class="day__shot" src={`${base}img/kurumayama.webp`} alt="Wide beginner slopes at Kurumayama" loading="lazy" />
       <span class="eyebrow" data-i18n="daySkierLabel">Skis</span>
       <h2 class="day__h" data-i18n="daySkierTitle">Big, gentle slopes. Nobody watching you fall over.</h2>
       <p class="day__b" data-i18n="daySkierBody">
@@ -245,6 +246,13 @@ const days = [
     margin-top: calc(var(--unit) * 4);
     font-size: 13px;
     color: var(--mute-on-paper);
+  }
+  .house__shot {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-top: calc(var(--unit) * 5);
+    border: var(--hair) solid var(--sage);
   }
 
   .day {
