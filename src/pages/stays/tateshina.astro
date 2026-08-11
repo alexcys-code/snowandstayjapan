@@ -4,11 +4,25 @@ import Pillow from '../../components/Pillow.astro';
 import { INSTAGRAM } from '../../data/copy';
 const base = import.meta.env.BASE_URL;
 
-const works = [
-  { k: 'w1k', kf: 'Sleep', v: 'w1v', vf: 'The whole house, just your lot. Sleeps 2–6.' },
-  { k: 'w2k', kf: 'Ski', v: 'w2v', vf: 'We drive you there and back, 40 minutes each way.' },
-  { k: 'w3k', kf: 'Rest', v: 'w3v', vf: 'Suwa Taisha shrine one day, the old post town the next.' },
-  { k: 'w4k', kf: 'Leave', v: 'w4v', vf: 'We run you back to the station. One train home.' },
+const features = [
+  { img: 'window-view.jpg', t: 'tsMorningTitle', tf: 'Wake up inside the snow.', b: 'tsMorningBody',
+    bf: 'No rushing downstairs before breakfast service ends. Make coffee in your pyjamas and have the Yatsugatake snowfield to yourselves.',
+    alt: 'Snowy peaks seen through the window of the kominka' },
+  { img: 'bedroom.jpg', t: 'tsHeritageTitle', tf: 'A 150-year-old soul, with modern warmth.', b: 'tsHeritageBody',
+    bf: 'You sleep under century-old beams on traditional tatami — and behind them sit a modern heating system and a proper bathroom.',
+    alt: 'A bedroom under century-old timber beams' },
+  { img: 'narai.webp', t: 'tsBaseTitle', tf: 'Snow on the way out, home on the way back.', b: 'tsBaseBody',
+    bf: 'Twenty-five minutes by car from Chino station. Ski, soak at Lake Suwa, walk the old post town — then come back to somewhere that is yours.',
+    alt: 'The old post town at Narai-juku under snow' },
+];
+
+const faqs = [
+  { q: 'tsQ1', qf: 'Isn’t an old house freezing?', a: 'tsA1',
+    af: 'It was, before we insulated it. The whole building has been upgraded for a Nagano winter.' },
+  { q: 'tsQ2', qf: 'How do we get there with all the ski luggage?', a: 'tsA2',
+    af: 'You do not carry it anywhere. We meet you on the platform at Chino and drive you and the bags to the front door.' },
+  { q: 'tsQ3', qf: 'There’s no hotel restaurant. What about dinner?', a: 'tsA3',
+    af: 'The kitchen is fully equipped and the supermarket is on the way home from the slopes.' },
 ];
 
 const legs = [
@@ -29,54 +43,35 @@ const days = [
 ];
 ---
 
-<Layout active="stay" title="The week">
-  <section class="monument" data-enter="aperture">
-    <p class="eyebrow" data-i18n="stayPlace">Tateshina · Nagano</p>
-    <h1 class="monument__dates" data-i18n="stayDates">Dec — Mar</h1>
-  </section>
-
-  <section class="section paper problem" data-enter="slide-screen">
-    <p class="eyebrow" data-i18n="problemEyebrow">Let’s be honest</p>
-    <h2 class="display problem__title" data-i18n="problemTitle">
-      Family ski trips are where holidays go to fall apart.
-    </h2>
-    <ol class="problem__list">
-      <li><span class="problem__num">01</span><span data-i18n="p01">The kids want to ski — and to just play in the snow.</span></li>
-      <li><span class="problem__num">02</span><span data-i18n="p02">Half the group won’t ski at all — and won’t sit in a resort canteen all day either.</span></li>
-      <li><span class="problem__num">03</span><span data-i18n="p03">You flew all the way to Japan. You’d like to actually enjoy some of it.</span></li>
-    </ol>
-    <p class="problem__close" data-i18n="problemClose">So skip the ski resort. Book the week.</p>
+<Layout active="stay" title="Kominka Kozumi">
+  <section class="hero" data-enter="aperture">
+    <div class="hero__frame frame">
+      <img class="shot" src={`${base}img/house-exterior.jpg`} alt="" fetchpriority="high" />
+      <div class="scrim"></div>
+      <div class="hero__copy">
+        <p class="eyebrow" data-i18n="tsHeroEyebrow">Kominka Kozumi · Chino, Nagano</p>
+        <h1 class="hero__title" data-i18n="tsHeroTitle">150 years of history. Nobody else in it.</h1>
+        <p class="hero__sub" data-i18n="tsHeroSub">
+          Timber beams, tatami, and absolute privacy. A fully restored century-old farmhouse in Chino, Nagano — open to your group of two to six alone.
+        </p>
+      </div>
+    </div>
   </section>
 
   <Pillow key="restOne" fallback="Snow out the front door." tone="ground" align="end" mark="br" />
 
-  <section class="section works">
-    <p class="eyebrow" data-i18n="worksEyebrow">Here’s the deal</p>
-    <h2 class="display works__title" data-i18n="worksTitle">One house. We do all the driving.</h2>
-    <div class="works__row" data-enter="recede">
-      {works.map((w) => (
-        <div class="works__cell">
-          <span class="eyebrow" data-i18n={w.k}>{w.kf}</span>
-          <p class="works__v" data-i18n={w.v}>{w.vf}</p>
-        </div>
+  <section class="section paper feats">
+    <p class="eyebrow" data-i18n="tsFeatEyebrow">What a whole house gives you</p>
+    <div class="feats__list" data-enter="recede">
+      {features.map((f, i) => (
+        <article class:list={['feat', i % 2 === 1 && 'feat--flip']}>
+          <img class="feat__shot" src={`${base}img/${f.img}`} alt={f.alt} loading="lazy" />
+          <div class="feat__copy">
+            <h2 class="feat__t" data-i18n={f.t}>{f.tf}</h2>
+            <p class="feat__b" data-i18n={f.b}>{f.bf}</p>
+          </div>
+        </article>
       ))}
-    </div>
-  </section>
-
-  <section class="section paper house" data-enter="seam">
-    <hr class="rule seam-rule" />
-    <div class="seam-body house__body">
-      <p class="eyebrow" data-i18n="houseEyebrow">The house · Chino, Nagano</p>
-      <h2 class="display" data-i18n="houseTitle">Wooden beams, tatami, and nobody else’s suitcases.</h2>
-      <p class="lede house__lede" data-i18n="houseBody">
-        A century-old kominka, restored — warm and modern inside, and yours alone for the week.
-      </p>
-      <div class="house__tags">
-        <span data-i18n="houseT1">Sleeps 2–6</span>
-        <span data-i18n="houseT2">Whole house, one group</span>
-        <span data-i18n="houseT3">25 min from the station</span>
-      </div>
-      <img class="house__shot" src={`${base}img/bedroom.jpg`} alt="A bedroom in the kominka — timber beams and made-up beds" loading="lazy" />
     </div>
   </section>
 
@@ -87,25 +82,19 @@ const days = [
       <img class="day__shot" src={`${base}img/kurumayama.webp`} alt="Wide beginner slopes at Kurumayama" loading="lazy" />
       <span class="eyebrow" data-i18n="daySkierLabel">Skis</span>
       <h2 class="day__h" data-i18n="daySkierTitle">Big, gentle slopes. Nobody watching you fall over.</h2>
-      <p class="day__b" data-i18n="daySkierBody">
-        Kurumayama SKYPARK is wide open with no trees in the way.
-      </p>
+      <p class="day__b" data-i18n="daySkierBody">Kurumayama SKYPARK is wide open with no trees in the way.</p>
     </div>
     <div class="day__seam" aria-hidden="true"></div>
     <div class="day__col col-b">
       <img class="day__shot" src={`${base}img/ropeway.webp`} alt="The snow-covered lava plateau at the top of the ropeway" loading="lazy" />
       <span class="eyebrow" data-i18n="dayRestLabel">Doesn’t ski</span>
       <h2 class="day__h" data-i18n="dayRestTitle">Cable car to the 2,237 m viewing deck. No skis required.</h2>
-      <p class="day__b" data-i18n="dayRestBody">
-        Seven warm minutes up, and you’re standing on a snow-covered volcanic plateau.
-      </p>
+      <p class="day__b" data-i18n="dayRestBody">Seven warm minutes up, and you’re standing on a snow-covered volcanic plateau.</p>
     </div>
     <p class="day__join" data-i18n="dayJoin">
       Both of you are back at the house before dark, in front of the same fire.
     </p>
   </section>
-
-  <Pillow key="offTitle" fallback="Sore legs? Perfect. Go be a tourist for a day." tone="paper" align="end" mark="bl" />
 
   <section class="section off" data-enter="settle">
     <p class="eyebrow" data-i18n="offEyebrow">The days in between</p>
@@ -126,31 +115,41 @@ const days = [
     <p class="off__close" data-i18n="offClose">Each one gets its own day. No rushing back for a 3pm lesson.</p>
   </section>
 
-  <section class="section paper getting" data-enter="seam">
+  <section class="section paper faq" data-enter="seam">
     <hr class="rule seam-rule" />
     <div class="seam-body">
-      <p class="eyebrow" data-i18n="getEyebrow">Getting there is the easy bit</p>
-      <h2 class="display getting__title" data-i18n="getTitle">One train out. One train back.</h2>
-      <ol class="legs">
-        {legs.map((l) => (
-          <li class="leg">
-            <span class="leg__dot" aria-hidden="true"></span>
-            <div>
-              <p class="leg__n" data-i18n={l.n}>{l.nf}</p>
-              <p class="leg__b" data-i18n={l.b}>{l.bf}</p>
-            </div>
-          </li>
+      <p class="eyebrow" data-i18n="tsFaqEyebrow">Before you ask</p>
+      <h2 class="display faq__title" data-i18n="tsFaqTitle">The three things everyone asks first.</h2>
+      <dl class="faq__list">
+        {faqs.map((f) => (
+          <div class="faq__item">
+            <dt class="faq__q" data-i18n={f.q}>{f.qf}</dt>
+            <dd class="faq__a" data-i18n={f.a}>{f.af}</dd>
+          </div>
         ))}
-      </ol>
-      <p class="getting__close" data-i18n="getClose">
-        Station pick-up, trips to the slopes, days out — we drive all of it.
-      </p>
+      </dl>
     </div>
   </section>
 
+  <section class="section getting" data-enter="dissolve">
+    <p class="eyebrow" data-i18n="getEyebrow">Getting there is the easy bit</p>
+    <h2 class="display getting__title" data-i18n="getTitle">One train out. One train back.</h2>
+    <ol class="legs">
+      {legs.map((l) => (
+        <li class="leg">
+          <span class="leg__dot" aria-hidden="true"></span>
+          <div>
+            <p class="leg__n" data-i18n={l.n}>{l.nf}</p>
+            <p class="leg__b" data-i18n={l.b}>{l.bf}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
   <section class="week">
-    <p class="eyebrow week__eyebrow" data-i18n="weekEyebrow">What the week looks like</p>
-    <h2 class="display week__title" data-i18n="weekTitle">Dec 23 → 29</h2>
+    <p class="eyebrow" data-i18n="weekEyebrow">What the week looks like</p>
+    <h2 class="display week__title" data-i18n="weekTitle">Day 1 → 7</h2>
     <ol class="week__list" data-enter="recede">
       {days.map((d) => (
         <li class="week__day">
@@ -163,256 +162,112 @@ const days = [
   </section>
 
   <section class="section ask" data-enter="settle">
-    <h2 class="display" data-i18n="inviteTitle">The season is open.</h2>
-    <p class="lede ask__lede" data-i18n="inviteBody">
-      Tell us how many are travelling and how many want to ski.
+    <h2 class="display ask__line" data-i18n="tsCtaLine">Give your family a different kind of winter this year.</h2>
+    <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="tsCtaBtn">
+      Ask about 26/27 whole-house dates and pricing
+    </a>
+    <p class="ask__note" data-i18n="inviteBody">
+      Tell us your dates, how many of you, and how many have never stood on skis.
     </p>
-    <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="inviteCta">DM us “SNOW”</a>
   </section>
 </Layout>
 
 <style>
-  .monument {
-    min-height: 88vh;
-    padding: var(--inset);
-    background: var(--ground);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: calc(var(--unit) * 2);
+  .hero { min-height: 100vh; padding: var(--inset); background: var(--ground); display: flex; }
+  .hero__frame { position: relative; flex: 1; display: flex; align-items: flex-end; overflow: hidden; }
+  .shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .scrim {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(14,14,14,0.2) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.85) 100%);
   }
-  .monument__dates {
-    font-size: clamp(3.4rem, 17vw, 12rem);
-    line-height: 0.92;
+  .hero__copy { position: relative; z-index: 2; padding: calc(var(--unit) * 5); max-width: 64ch; }
+  .hero__title {
+    font-size: clamp(2.1rem, 5.4vw, 4.4rem);
+    margin: calc(var(--unit) * 2) 0 0;
     color: var(--ink-on-ground);
-    letter-spacing: -0.01em;
   }
+  .hero__sub { margin-top: calc(var(--unit) * 3); color: var(--mute-on-ground); max-width: 56ch; }
 
-  .problem__title { margin-top: calc(var(--unit) * 2); max-width: 20ch; }
-  .problem__list {
-    list-style: none;
-    margin: calc(var(--unit) * 7) 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+  .feats__list { margin-top: calc(var(--unit) * 7); display: flex; flex-direction: column; gap: calc(var(--unit) * 9); }
+  .feat { display: grid; grid-template-columns: 1.05fr 1fr; gap: calc(var(--unit) * 6); align-items: center; }
+  .feat--flip .feat__shot { order: 2; }
+  .feat__shot { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--hair) solid var(--sage); }
+  .feat__t {
+    font-family: var(--serif); font-weight: var(--serif-weight);
+    font-size: clamp(1.4rem, 3vw, 2.2rem); line-height: 1.25;
   }
-  .problem__list li {
-    display: flex;
-    gap: calc(var(--unit) * 3);
-    padding: calc(var(--unit) * 3) 0;
-    border-top: var(--hair) solid rgba(26, 48, 40, 0.16);
-    max-width: 76ch;
-  }
-  .problem__num {
-    font-family: var(--serif);
-    font-weight: var(--serif-weight);
-    color: var(--accent);
-    min-width: 3ch;
-  }
-  .problem__close {
-    margin-top: calc(var(--unit) * 6);
-    font-family: var(--serif);
-    font-weight: var(--serif-weight);
-    font-size: clamp(1.3rem, 3vw, 2rem);
-    max-width: 30ch;
-  }
+  .feat__b { margin-top: calc(var(--unit) * 2.5); color: var(--mute-on-paper); max-width: 52ch; }
 
-  .works { background: var(--ground); }
-  .works__title { margin-top: calc(var(--unit) * 2); max-width: 20ch; }
-  .works__row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--hair);
-    margin-top: calc(var(--unit) * 8);
-    background: rgba(138, 154, 143, 0.3);
-    border: var(--hair) solid rgba(138, 154, 143, 0.3);
-  }
-  .works__cell {
-    background: var(--ground);
-    padding: calc(var(--unit) * 4);
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--unit) * 1.5);
-  }
-  .works__v { color: var(--mute-on-ground); font-size: 15px; }
-
-  .house__body { padding-top: calc(var(--unit) * 6); max-width: 70ch; }
-  .house__body h2 { margin-top: calc(var(--unit) * 2); }
-  .house__lede { margin-top: calc(var(--unit) * 3); }
-  .house__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: calc(var(--unit) * 4);
-    margin-top: calc(var(--unit) * 4);
-    font-size: 13px;
-    color: var(--mute-on-paper);
-  }
-  .house__shot {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    margin-top: calc(var(--unit) * 5);
-    border: var(--hair) solid var(--sage);
-  }
-
-  .day {
-    display: grid;
-    grid-template-columns: 1fr var(--hair) 1fr;
-    min-height: 100vh;
-    background: var(--paper);
-    color: var(--ink-on-paper);
-  }
-  .day__col {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: calc(var(--unit) * 2);
-    padding: var(--inset);
-  }
+  .day { display: grid; grid-template-columns: 1fr var(--hair) 1fr; background: var(--paper); color: var(--ink-on-paper); }
+  .day__col { display: flex; flex-direction: column; gap: calc(var(--unit) * 1.5); padding: var(--inset); }
   .day__seam { background: var(--accent); }
-  .day__h {
-    font-size: clamp(1.4rem, 2.7vw, 2.1rem);
-    max-width: 18ch;
-  }
-  .day__b { color: var(--mute-on-paper); max-width: 42ch; font-size: 16px; }
+  .day__shot { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border: var(--hair) solid rgba(26,48,40,0.2); margin-bottom: calc(var(--unit) * 2); }
+  .day__h { font-size: clamp(1.25rem, 2.4vw, 1.9rem); max-width: 20ch; }
+  .day__b { color: var(--mute-on-paper); max-width: 44ch; font-size: 16px; }
   .day__join {
-    grid-column: 1 / -1;
-    border-top: var(--hair) solid rgba(26, 48, 40, 0.2);
-    padding: calc(var(--unit) * 5) var(--inset);
-    text-align: center;
-    font-family: var(--serif);
-    font-weight: var(--serif-weight);
-    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    grid-column: 1 / -1; border-top: var(--hair) solid rgba(26,48,40,0.2);
+    padding: calc(var(--unit) * 5) var(--inset); text-align: center;
+    font-family: var(--serif); font-weight: var(--serif-weight); font-size: clamp(1.05rem, 2.1vw, 1.5rem);
   }
 
   .off { background: var(--ground); }
-  .off__pair {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: calc(var(--unit) * 5);
-    margin-top: calc(var(--unit) * 5);
-  }
+  .off__pair { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--unit) * 5); margin-top: calc(var(--unit) * 5); }
   .off__one { display: flex; flex-direction: column; gap: calc(var(--unit) * 1); }
-  .off__shot {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border: var(--hair) solid var(--sage);
-    margin-bottom: calc(var(--unit) * 2);
-  }
+  .off__shot { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--hair) solid var(--sage); margin-bottom: calc(var(--unit) * 2); }
   .off__n { font-size: clamp(1.2rem, 2.2vw, 1.7rem); }
   .off__t { font-size: 13px; color: var(--accent); }
   .off__b { color: var(--mute-on-ground); font-size: 15px; }
   .off__close { margin-top: calc(var(--unit) * 5); color: var(--mute-on-ground); max-width: 50ch; }
 
+  .faq__title { margin-top: calc(var(--unit) * 2); }
+  .faq__list { margin: calc(var(--unit) * 6) 0 0; }
+  .faq__item { padding: calc(var(--unit) * 3) 0; border-top: var(--hair) solid rgba(26,48,40,0.18); max-width: 82ch; }
+  .faq__q {
+    font-family: var(--serif); font-weight: var(--serif-weight);
+    font-size: clamp(1.05rem, 2vw, 1.35rem); color: var(--ink-on-paper);
+  }
+  .faq__a { margin: calc(var(--unit) * 1.5) 0 0; color: var(--mute-on-paper); font-size: 16px; }
+
+  .getting { background: var(--ground); }
   .getting__title { margin-top: calc(var(--unit) * 2); }
   .legs { list-style: none; margin: calc(var(--unit) * 6) 0 0; padding: 0; }
-  .leg {
-    display: flex;
-    gap: calc(var(--unit) * 3);
-    padding-bottom: calc(var(--unit) * 4);
-    position: relative;
-  }
+  .leg { display: flex; gap: calc(var(--unit) * 3); padding-bottom: calc(var(--unit) * 4); position: relative; }
   .leg:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 16px;
-    bottom: 0;
-    width: var(--hair);
-    background: rgba(26, 48, 40, 0.25);
+    content: ''; position: absolute; left: 5px; top: 16px; bottom: 0;
+    width: var(--hair); background: rgba(138,154,143,0.4);
   }
-  .leg__dot {
-    width: 11px;
-    height: 11px;
-    margin-top: 7px;
-    flex-shrink: 0;
-    background: var(--accent);
-  }
+  .leg__dot { width: 11px; height: 11px; margin-top: 7px; flex-shrink: 0; background: var(--accent); }
   .leg__n { font-weight: 700; }
-  .leg__b { color: var(--mute-on-paper); font-size: 15px; }
-  .getting__close { margin-top: calc(var(--unit) * 2); color: var(--mute-on-paper); max-width: 60ch; }
+  .leg__b { color: var(--mute-on-ground); font-size: 15px; }
 
-  .week {
-    position: relative;
-    background: var(--ground);
-    padding: calc(var(--unit) * 14) var(--inset);
-  }
+  .week { position: relative; background: var(--paper); color: var(--ink-on-paper); padding: calc(var(--unit) * 14) var(--inset); }
   .week__title { margin-top: calc(var(--unit) * 2); }
-  .week__list {
-    list-style: none;
-    position: relative;
-    margin: calc(var(--unit) * 8) 0 0;
-    padding: 0;
-  }
-  .week__list::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: var(--hair);
-    background: rgba(138, 154, 143, 0.4);
-  }
-  .week__day {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: calc(var(--unit) * 6);
-    padding: calc(var(--unit) * 3) 0;
-  }
+  .week__list { list-style: none; position: relative; margin: calc(var(--unit) * 8) 0 0; padding: 0; }
+  .week__list::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: var(--hair); background: rgba(26,48,40,0.2); }
+  .week__day { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--unit) * 6); padding: calc(var(--unit) * 3) 0; }
   .week__day > * { grid-column: 1; text-align: right; padding-right: calc(var(--unit) * 4); }
-  .week__day:nth-child(even) > * {
-    grid-column: 2;
-    text-align: left;
-    padding-right: 0;
-    padding-left: calc(var(--unit) * 4);
-  }
-  .week__date {
-    font-family: var(--serif);
-    font-weight: var(--serif-weight);
-    font-size: clamp(1.2rem, 2.4vw, 1.8rem);
-    transition: color var(--t-fast) var(--ease);
-  }
+  .week__day:nth-child(even) > * { grid-column: 2; text-align: left; padding-right: 0; padding-left: calc(var(--unit) * 4); }
+  .week__date { font-family: var(--serif); font-weight: var(--serif-weight); font-size: clamp(1.1rem, 2.2vw, 1.6rem); transition: color var(--t-fast) var(--ease); }
   .week__day:hover .week__date { color: var(--accent); }
-  .week__what { color: var(--mute-on-ground); font-size: 15px; }
-  .week__close { margin-top: calc(var(--unit) * 6); color: var(--mute-on-ground); font-size: 14px; }
+  .week__what { color: var(--mute-on-paper); font-size: 15px; }
+  .week__close { margin-top: calc(var(--unit) * 6); color: var(--mute-on-paper); font-size: 14px; }
 
-  .ask {
-    background: var(--ground);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: calc(var(--unit) * 3);
-  }
-  .ask__lede { max-width: 46ch; }
+  .ask { background: var(--ground); display: flex; flex-direction: column; align-items: center; text-align: center; gap: calc(var(--unit) * 3); }
+  .ask__line { max-width: 24ch; }
+  .ask__note { font-size: 14px; color: var(--mute-on-ground); max-width: 44ch; }
 
-  .day__shot {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    border: var(--hair) solid rgba(26, 48, 40, 0.2);
-    margin-bottom: auto;
-  }
-
-  @media (max-width: 860px) {
-    .works__row { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 900px) {
+    .feat { grid-template-columns: 1fr; gap: calc(var(--unit) * 3); }
+    .feat--flip .feat__shot { order: 0; }
     .off__pair { grid-template-columns: 1fr; }
   }
   @media (max-width: 760px) {
-    .day { grid-template-columns: 1fr; min-height: 0; }
+    .day { grid-template-columns: 1fr; }
     .day__seam { height: 2px; }
     .week__list::before { left: 0; }
     .week__day { grid-template-columns: 1fr; gap: calc(var(--unit) * 1); }
-    .week__day > *,
-    .week__day:nth-child(even) > * {
-      grid-column: 1;
-      text-align: left;
-      padding-right: 0;
-      padding-left: calc(var(--unit) * 3);
+    .week__day > *, .week__day:nth-child(even) > * {
+      grid-column: 1; text-align: left; padding-right: 0; padding-left: calc(var(--unit) * 3);
     }
-  }
-  @media (max-width: 560px) {
-    .works__row { grid-template-columns: 1fr; }
   }
 </style>
