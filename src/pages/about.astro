@@ -1,157 +1,128 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import Pillow from '../components/Pillow.astro';
+import { INSTAGRAM } from '../data/copy';
+
+const notes = [
+  { n: 'aboutN1', nf: 'Based in Chino, Nagano', b: 'aboutN1b', bf: 'Two hours from Shinjuku on one train.' },
+  { n: 'aboutN2', nf: 'One group at a time', b: 'aboutN2b', bf: 'We do not run two bookings in the same week.' },
+  { n: 'aboutN3', nf: 'We drive', bf: 'Station, slopes, onsen, old towns. All of it.', b: 'aboutN3b' },
+];
 ---
 
-<Layout title="About" description="About this Japan 2026 trip guide">
-  <Nav active="about" />
-
-  <header class="page-hero tile-pattern">
-    <div class="hero-inner">
-      <p class="hero-eyebrow" data-i18n="navAbout">About</p>
-      <h1 class="hero-title">Japan 2026</h1>
+<Layout active="about" title="About">
+  <section class="manifesto paper" data-enter="dissolve">
+    <div class="manifesto__body">
+      <p class="manifesto__lead" data-i18n="aboutLead">
+        We started doing this because we kept watching the same holiday go wrong.
+      </p>
+      <p data-i18n="aboutP1">
+        A family flies to Japan for the snow. They book a big resort, because that is what you do.
+      </p>
+      <p data-i18n="aboutP2">
+        So we stopped selling ski trips and started renting a house with a driver attached.
+      </p>
+      <p data-i18n="aboutP3">
+        The mountains here are smaller than Niseko and emptier than Hakuba.
+      </p>
     </div>
-  </header>
-
-  <main>
-    <section class="section">
-      <div class="container">
-        <div class="about-grid">
-          <div class="about-block">
-            <h2 class="block-title">About this guide</h2>
-            <p class="block-body">
-              This site is a personal travel planning guide for a Spring 2026 trip to Japan, covering
-              two destinations — the alpine meadows of Yatsugatake and the electric streets of Tokyo.
-              It was built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> and
-              hosted on GitHub Pages, inspired by <a href="https://mariatta.ca/portugal-trip/" target="_blank" rel="noopener">Mariatta's Portugal trip guide</a>.
-            </p>
-          </div>
-
-          <div class="about-block">
-            <h2 class="block-title">The itinerary</h2>
-            <p class="block-body">
-              8 nights total across two stops:<br /><br />
-              <strong>Yatsugatake</strong> — May 1–4, 3 nights in the highland plateau around Kobuchizawa and Kiyosato.<br /><br />
-              <strong>Tokyo</strong> — May 4–9, 5 nights exploring temples, neighbourhoods, ramen, and everything in between.
-            </p>
-          </div>
-
-          <div class="about-block">
-            <h2 class="block-title">Languages</h2>
-            <p class="block-body">
-              This guide is available in three languages — English, Traditional Chinese (繁體中文), and Japanese (日本語).
-              Use the tabs in the navigation bar to switch between them at any time. Your preference is saved automatically.
-            </p>
-          </div>
-
-          <div class="about-block">
-            <h2 class="block-title">Built with</h2>
-            <ul class="tech-list">
-              <li><a href="https://astro.build" target="_blank" rel="noopener">Astro</a> — static site framework</li>
-              <li><a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> — interactive maps</li>
-              <li><a href="https://www.openstreetmap.org" target="_blank" rel="noopener">OpenStreetMap</a> — map tiles</li>
-              <li>Cormorant Garamond & Jost — typography</li>
-              <li>GitHub Pages — hosting</li>
-            </ul>
-          </div>
+    <aside class="manifesto__notes">
+      {notes.map((n) => (
+        <div class="note">
+          <p class="note__n" data-i18n={n.n}>{n.nf}</p>
+          <p class="note__b" data-i18n={n.b}>{n.bf}</p>
         </div>
-      </div>
-    </section>
-  </main>
+      ))}
+    </aside>
+  </section>
 
-  <Footer footerText="🇯🇵 Japan Trip · Spring 2026" repoUrl="https://github.com/yourusername/japan-trip" />
+  <section class="section paper closing" data-enter="seam">
+    <hr class="rule seam-rule" />
+    <div class="seam-body">
+      <div class="slot" data-slot="The house, winter"></div>
+    </div>
+  </section>
+
+  <Pillow key="restTwo" fallback="Christmas morning happens in a living room." tone="ground" align="end" mark="br" />
+
+  <section class="section ask" data-enter="settle">
+    <h2 class="display" data-i18n="inviteTitle">Christmas dates are open.</h2>
+    <p class="lede ask__lede" data-i18n="inviteBody">
+      Tell us how many are travelling and how many want to ski.
+    </p>
+    <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="inviteCta">DM us “SNOW”</a>
+  </section>
 </Layout>
 
 <style>
-  .page-hero {
-    padding: 5rem 2rem 4rem;
-    text-align: center;
-    border-bottom: 1px solid var(--cream-dark);
-  }
-  .hero-inner { max-width: 700px; margin: 0 auto; }
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--pt-green);
-    margin-bottom: 1rem;
-  }
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 10vw, 6rem);
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-  }
-
-  .section { padding: 5rem 2rem; }
-  .container { max-width: 1100px; margin: 0 auto; }
-
-  .about-grid {
+  .manifesto {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
-    gap: 2rem;
+    grid-template-columns: minmax(0, 62ch) minmax(0, 22ch);
+    gap: calc(var(--unit) * 8);
+    padding: calc(var(--unit) * 16) var(--inset) calc(var(--unit) * 10);
   }
-
-  .about-block {
-    padding: 2rem;
-    background: white;
-    border: 1px solid var(--cream-dark);
-    border-radius: var(--radius-lg);
-  }
-
-  .block-title {
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 1rem;
-  }
-
-  .block-body {
-    font-size: 0.925rem;
-    color: var(--ink-muted);
-    line-height: 1.75;
-  }
-
-  .block-body a {
-    color: var(--pt-green);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-  .block-body a:hover { text-decoration-thickness: 2px; }
-
-  .tech-list {
-    list-style: none;
-    padding: 0;
+  .manifesto__body {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: calc(var(--unit) * 3);
+    font-size: 19px;
+    line-height: 1.85;
   }
-  .tech-list li {
-    font-size: 0.925rem;
-    color: var(--ink-muted);
-    padding-left: 1rem;
-    position: relative;
+  .manifesto__lead {
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+    line-height: 1.3;
+    margin-bottom: calc(var(--unit) * 2);
   }
-  .tech-list li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--pt-green);
-    font-size: 0.8rem;
-  }
-  .tech-list a {
-    color: var(--ink);
-    font-weight: 500;
-  }
-  .tech-list a:hover { color: var(--pt-green); }
+  .manifesto__lead::first-letter { color: var(--accent); }
 
-  @media (max-width: 600px) {
-    .about-grid { grid-template-columns: 1fr; }
-    .section { padding: 3rem 1.25rem; }
+  .manifesto__notes {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) * 5);
+    padding-top: calc(var(--unit) * 2);
+  }
+  .note {
+    padding-top: calc(var(--unit) * 1.5);
+    border-top: var(--hair) solid var(--sage);
+  }
+  .note__n { font-size: 13px; font-weight: 700; }
+  .note__b { font-size: 13px; color: var(--mute-on-paper); margin-top: 4px; }
+
+  .closing { padding-top: 0; }
+  .closing .slot {
+    position: relative;
+    aspect-ratio: 21 / 9;
+    margin-top: calc(var(--unit) * 6);
+    border: var(--hair) solid var(--sage);
+    background: rgba(26, 48, 40, 0.06);
+    display: grid;
+    place-items: center;
+  }
+  .closing .slot::after {
+    content: attr(data-slot);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(26, 48, 40, 0.3);
+  }
+
+  .ask {
+    background: var(--ground);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc(var(--unit) * 3);
+  }
+  .ask__lede { max-width: 46ch; }
+
+  @media (max-width: 860px) {
+    .manifesto {
+      grid-template-columns: 1fr;
+      padding-top: calc(var(--unit) * 10);
+      gap: calc(var(--unit) * 6);
+    }
   }
 </style>

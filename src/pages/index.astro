@@ -1,501 +1,211 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-
+import Pillow from '../components/Pillow.astro';
+import { INSTAGRAM } from '../data/copy';
 const base = import.meta.env.BASE_URL;
-
-const cities = [
-  {
-    name: 'Yatsugatake',
-    slug: 'yatsugatake',
-    season: 'Dec – Mar',
-    detail: '3 ski areas',
-    tagline: 'Volcanic highlands, powder snow & steaming onsens',
-    accent: '#2C5282',
-    accentLight: '#EBF4FF',
-  },
-  {
-    name: 'Nearby Resorts',
-    slug: 'nearby',
-    season: 'Dec – Apr',
-    detail: '8 ski areas',
-    tagline: 'Hidden gems around Yatsugatake — quieter, drier, more authentic',
-    accent: '#1A4F7A',
-    accentLight: '#E8F4FD',
-  },
-];
-
-const stats = [
-  { value: '11', label: 'Ski areas', i18n: 'statSkiAreas' },
-  { value: '1,071m', label: 'Best vertical', i18n: 'statBestVertical' },
-  { value: '2,000m', label: 'Highest base', i18n: 'statHighestBase' },
-  { value: 'Dec–Apr', label: 'Season', i18n: 'statSeason' },
-];
-
-const tips = [
-  {
-    icon: '🎿',
-    title: 'Ski Gear & Rentals',
-    items: [
-      'All three ski areas have rental shops — skis, boots, poles and helmets available on-site. Reserve online for the best availability in peak season.',
-      'Bring a good base layer and a waterproof shell. Yatsugatake snow is typically cold and dry, so heavy insulation is less critical than wind protection.',
-      'Helmets are strongly recommended and increasingly common — some resorts require them for children.',
-      'Ski lockers and boot drying rooms are standard at all resorts and most ski-focused accommodations.',
-    ],
-  },
-  {
-    icon: '🚄',
-    title: 'Getting There',
-    items: [
-      'Azusa limited express from Shinjuku to Kobuchizawa takes ~2 hours (¥3,680 one way). Reserve seats in advance for peak ski weekends.',
-      'A rental car from Kobuchizawa Station gives flexibility to hit multiple resorts in one trip — highly recommended.',
-      'Risonare and Bleston Court run free ski shuttles to nearby resorts — factor this in when choosing accommodation.',
-      'IC cards (Suica / PASMO) work on the JR Chuo Line and most local buses. Top up at any major station.',
-    ],
-  },
-  {
-    icon: '❄️',
-    title: 'Snow & Conditions',
-    items: [
-      'Peak powder season is mid-January to mid-February. December and March offer uncrowded slopes with good snow at elevation.',
-      'Yatsugatake\'s high base elevations (1,000–1,500 m) mean reliable snow even in lower-snowfall years.',
-      'Check resort websites for daily snow reports. Most publish grooming maps and webcam feeds.',
-      'New Year\'s and early February are peak crowd periods — weekday skiing is significantly more enjoyable.',
-    ],
-  },
-  {
-    icon: '♨️',
-    title: 'Onsen & Après-ski',
-    items: [
-      'Most accommodations have onsen (hot spring baths) — essential recovery after a day on snow. Many are outdoor (rotenburo) and stay open even in snow.',
-      'Kobuchizawa\'s wine-road area has several good dinner spots — book Café Rosa in advance for weekend evenings.',
-      'Convenience stores are excellent for on-mountain snacks and pre-ski breakfasts — 7-Eleven rice balls and hot drinks are a staple.',
-      'Carry cash for small mountain restaurants and lift ticket supplements — card acceptance is limited at some facilities.',
-    ],
-  },
-];
 ---
 
-<Layout description="A travel guide to Yatsugatake & Tokyo — Japan Spring 2026">
-  <header>
-    <Nav active="home" />
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero tile-pattern">
-      <div class="hero-inner">
-        <p class="hero-eyebrow fade-up">Winter Sports · Japan</p>
-        <h1 class="hero-title fade-up delay-1">Yatsugatake</h1>
-        <p class="hero-tagline fade-up delay-2">
-          Powder snow, volcanic terrain and steaming onsens in the Southern Japanese Alps —
-          a winter sports guide to the Yatsugatake Highlands.
+<Layout active="home">
+  <section class="threshold" data-enter="aperture">
+    <div class="threshold__frame frame">
+      <div class="slot slot--hero" data-slot="Kominka exterior, snow"></div>
+      <div class="threshold__copy">
+        <p class="eyebrow" data-i18n="homeEyebrow">Dec 23 – 29 · Tateshina, Nagano</p>
+        <h1 class="threshold__title" data-i18n="homeTitle">Christmas in a 150-year-old kominka.</h1>
+        <p class="threshold__lede" data-i18n="homeLede">
+          A kominka is an old Japanese country house. This one is yours for the week — with snow out the front door and the kids learning to ski before New Year.
         </p>
-        <div class="hero-ctas fade-up delay-3">
-          <a href={`${base}yatsugatake/`} class="btn btn-primary">Explore Yatsugatake →</a>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Stats bar -->
-    <section class="stats-bar">
-      <div class="stats-inner">
-        {stats.map(s => (
-          <div class="stat">
-            <span class="stat-value">{s.value}</span>
-            <span class="stat-label" data-i18n={s.i18n}>{s.label}</span>
-          </div>
-        ))}
+  <Pillow key="restOne" fallback="Snow out the front door." tone="ground" align="end" mark="br" />
+
+  <section class="promise section paper" data-enter="seam">
+    <hr class="rule seam-rule" />
+    <div class="seam-body promise__body">
+      <h2 class="display" data-i18n="promiseTitle">One house. We do all the driving.</h2>
+      <p class="lede promise__lede" data-i18n="promiseBody">
+        You take one train out of Tokyo. We meet you at the station and drive you the last 25 minutes to the door.
+      </p>
+    </div>
+  </section>
+
+  <section class="apertures" data-enter="recede" aria-label="Stay, ski, rest">
+    <article class="aperture aperture--1" tabindex="0">
+      <div class="slot" data-slot="The house"></div>
+      <div class="aperture__panel"></div>
+      <div class="aperture__label">
+        <span class="eyebrow" data-i18n="apStayLabel">You sleep here</span>
+        <span class="aperture__name" data-i18n="apStayName">Kominka Kozumi</span>
       </div>
-    </section>
-
-    <!-- City cards -->
-    <section class="section cities-section">
-      <div class="container">
-        <div class="section-label" data-i18n="labelDestinations">THE DESTINATIONS</div>
-        <h2 class="section-title" data-i18n="homeDestTitle">The destinations</h2>
-        <p class="section-intro" data-i18n="homeDestIntro">
-          Two guides, eleven ski areas — from the flagship Yatsugatake resorts to the hidden gems and natural-snow boutiques of the surrounding highlands.
-        </p>
-        <div class="cities-grid">
-          {cities.map(city => (
-            <a href={`${base}${city.slug}/`} class="city-card" style={`--city-accent: ${city.accent}; --city-accent-light: ${city.accentLight}`}>
-              <div class="city-card-top">
-                <div class="city-card-meta">
-                  <span class="city-card-dates">{city.season}</span>
-                  <span class="city-card-nights">{city.detail}</span>
-                </div>
-                <h3 class="city-card-name">{city.name}</h3>
-                <p class="city-card-tagline">{city.tagline}</p>
-              </div>
-              <div class="city-card-footer">
-                <span class="city-card-link">Explore {city.name} →</span>
-              </div>
-            </a>
-          ))}
-        </div>
+    </article>
+    <article class="aperture aperture--2" tabindex="0">
+      <div class="slot" data-slot="The slopes"></div>
+      <div class="aperture__panel"></div>
+      <div class="aperture__label">
+        <span class="eyebrow" data-i18n="apSkiLabel">You ski here</span>
+        <span class="aperture__name" data-i18n="apSkiName">Kurumayama &amp; Pilatus</span>
       </div>
-    </section>
-
-    <!-- Route bar -->
-    <section class="route-section">
-      <div class="container">
-        <div class="section-label">HOW TO GET THERE</div>
-        <h2 class="section-title">Tokyo → Yatsugatake</h2>
-        <div class="route-bar">
-          <div class="route-stop route-stop-home">
-            <div class="route-dot route-dot-home"></div>
-            <span class="route-name">Tokyo (Shinjuku)</span>
-            <span class="route-sub">Board Azusa express</span>
-          </div>
-          <div class="route-line"></div>
-          <div class="route-stop">
-            <div class="route-dot" style="background: #2C5282"></div>
-            <span class="route-name">Kobuchizawa Stn</span>
-            <span class="route-sub">~2 hrs · ¥3,680</span>
-          </div>
-          <div class="route-line"></div>
-          <div class="route-stop">
-            <div class="route-dot" style="background: #2C5282"></div>
-            <span class="route-name">Sunmeadows Kiyosato</span>
-            <span class="route-sub">Bus / shuttle · 20 min</span>
-          </div>
-          <div class="route-line"></div>
-          <div class="route-stop">
-            <div class="route-dot" style="background: #2C5282"></div>
-            <span class="route-name">Fujimi Panorama</span>
-            <span class="route-sub">Car / taxi · 30 min</span>
-          </div>
-          <div class="route-line"></div>
-          <div class="route-stop">
-            <div class="route-dot" style="background: #2C5282"></div>
-            <span class="route-name">Kogen Ski Area</span>
-            <span class="route-sub">Car · 25 min</span>
-          </div>
-        </div>
+    </article>
+    <article class="aperture aperture--3" tabindex="0">
+      <div class="slot" data-slot="Suwa, Narai-juku"></div>
+      <div class="aperture__panel"></div>
+      <div class="aperture__label">
+        <span class="eyebrow" data-i18n="apRestLabel">You rest here</span>
+        <span class="aperture__name" data-i18n="apRestName">Suwa &amp; Narai-juku</span>
       </div>
-    </section>
+    </article>
+  </section>
 
-    <!-- Travel tips -->
-    <section class="section tips-section">
-      <div class="container">
-        <div class="section-label">BEFORE YOU GO</div>
-        <h2 class="section-title">Winter sports essentials</h2>
-        <p class="section-intro">Everything you need for a Yatsugatake ski trip — gear, transport, snow conditions, and après-ski.</p>
-        <div class="tips-grid">
-          {tips.map(tip => (
-            <div class="tip-card">
-              <div class="tip-icon">{tip.icon}</div>
-              <h3 class="tip-title">{tip.title}</h3>
-              <ul class="tip-list">
-                {tip.items.map(item => (
-                  <li class="tip-item">{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  </main>
+  <Pillow key="restTwo" fallback="Christmas morning happens in a living room." tone="paper" align="start" mark="tr" />
 
-  <Footer footerText="⛷ Yatsugatake Winter Sports Guide" repoUrl="https://github.com/yourusername/yatsugatake-ski" />
+  <section class="invite section" data-enter="settle">
+    <h2 class="display invite__title" data-i18n="inviteTitle">Christmas dates are open.</h2>
+    <p class="lede invite__lede" data-i18n="inviteBody">
+      Tell us how many are travelling and how many want to ski. We’ll send back the week, with a price on it.
+    </p>
+    <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="inviteCta">DM us “SNOW”</a>
+    <a class="invite__more" href={`${base}stay/`} data-i18n="navStay">The week</a>
+  </section>
 </Layout>
 
 <style>
-  /* Hero */
-  .hero {
-    padding: 7rem 2rem 6rem;
-    text-align: center;
-    border-bottom: 1px solid var(--cream-dark);
-  }
-  .hero-inner { max-width: 700px; margin: 0 auto; }
-  .hero-eyebrow {
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--pt-green);
-    margin-bottom: 1.25rem;
-  }
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(5rem, 18vw, 11rem);
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 0.85;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-  }
-  .hero-tagline {
-    font-size: 1.1rem;
-    color: var(--ink-muted);
-    font-weight: 300;
-    line-height: 1.7;
-    max-width: 540px;
-    margin: 0 auto 2.5rem;
-  }
-  .hero-ctas {
+  .threshold {
+    min-height: 100vh;
+    padding: var(--inset);
+    background: var(--ground);
     display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    flex-wrap: wrap;
   }
-  .btn {
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding: 0.7rem 1.75rem;
-    border-radius: 30px;
-    transition: all 0.2s;
-  }
-  .btn-primary {
-    background: var(--pt-green);
-    color: white;
-  }
-  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-  .btn-secondary {
-    background: transparent;
-    color: var(--ink-muted);
-    border: 1px solid var(--cream-dark);
-  }
-  .btn-secondary:hover { background: var(--cream-dark); color: var(--ink); }
-
-  /* Stats bar */
-  .stats-bar {
-    background: white;
-    border-bottom: 1px solid var(--cream-dark);
-    padding: 1.5rem 2rem;
-  }
-  .stats-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    gap: 3rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    text-align: center;
-  }
-  .stat-value {
-    font-family: var(--font-display);
-    font-size: 1.8rem;
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.7rem;
-    color: var(--ink-faint);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  /* Sections */
-  .section { padding: 5rem 2rem; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--pt-green);
-    margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 300;
-    color: var(--ink);
-    margin-bottom: 1rem;
-  }
-  .section-intro {
-    font-size: 1rem;
-    color: var(--ink-muted);
-    max-width: 600px;
-    margin-bottom: 2.5rem;
-    line-height: 1.75;
-  }
-
-  /* City cards */
-  .cities-section { background: white; }
-  .cities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-  }
-  .city-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 1px solid var(--cream-dark);
-    border-top: 4px solid var(--city-accent);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem;
-    background: var(--city-accent-light);
-    transition: box-shadow 0.2s, transform 0.2s;
-    cursor: pointer;
-  }
-  .city-card:hover {
-    box-shadow: 0 6px 28px rgba(0,0,0,0.09);
-    transform: translateY(-3px);
-  }
-  .city-card-top { display: flex; flex-direction: column; gap: 0.6rem; }
-  .city-card-meta {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-  }
-  .city-card-dates {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--city-accent);
-  }
-  .city-card-nights {
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-  .city-card-name {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-  .city-card-tagline {
-    font-size: 0.9rem;
-    color: var(--ink-muted);
-    line-height: 1.55;
-  }
-  .city-card-footer {
-    padding-top: 1.25rem;
-    margin-top: 1.25rem;
-    border-top: 1px solid rgba(0,0,0,0.07);
-  }
-  .city-card-link {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--city-accent);
-    letter-spacing: 0.03em;
-  }
-
-  /* Route */
-  .route-section {
-    padding: 4rem 2rem;
-    background: white;
-    border-top: 1px solid var(--cream-dark);
-    border-bottom: 1px solid var(--cream-dark);
-  }
-  .route-bar {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    overflow-x: auto;
-    padding: 1rem 0;
-    margin-top: 1.5rem;
-  }
-  .route-stop {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-    flex-shrink: 0;
-    min-width: 110px;
-  }
-  .route-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 0 2px currentColor;
-    margin-bottom: 0.25rem;
-  }
-  .route-dot-home {
-    background: var(--ink-faint);
-    box-shadow: 0 0 0 2px var(--ink-faint);
-  }
-  .route-line {
-    flex: 1;
-    min-width: 40px;
-    height: 1px;
-    background: var(--cream-dark);
-    margin-bottom: 2.5rem;
-  }
-  .route-name {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--ink);
-    text-align: center;
-    white-space: nowrap;
-  }
-  .route-sub {
-    font-size: 0.68rem;
-    color: var(--ink-faint);
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  /* Tips */
-  .tips-section { background: var(--cream); }
-  .tips-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.25rem;
-  }
-  .tip-card {
-    background: white;
-    border: 1px solid var(--cream-dark);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .tip-icon { font-size: 1.5rem; line-height: 1; }
-  .tip-title {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  .tip-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .tip-item {
-    font-size: 0.845rem;
-    color: var(--ink-muted);
-    line-height: 1.6;
-    padding-left: 1rem;
+  .threshold__frame {
     position: relative;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
   }
-  .tip-item::before {
-    content: '·';
-    position: absolute;
-    left: 0;
-    color: var(--pt-green);
-    font-weight: 700;
+  .threshold__copy {
+    position: relative;
+    z-index: 2;
+    padding: calc(var(--unit) * 5);
+    max-width: 62ch;
+  }
+  .threshold__title {
+    font-size: clamp(2.4rem, 6.4vw, 5.2rem);
+    margin: calc(var(--unit) * 2) 0 0;
+    color: var(--ink-on-ground);
+  }
+  .threshold__lede {
+    margin-top: calc(var(--unit) * 3);
+    color: var(--mute-on-ground);
+    max-width: 54ch;
   }
 
-  @media (max-width: 600px) {
-    .hero { padding: 5rem 1.5rem 4rem; }
-    .section { padding: 3rem 1.25rem; }
-    .route-section { padding: 3rem 1.25rem; }
-    .cities-grid, .tips-grid { grid-template-columns: 1fr; }
-    .stats-inner { gap: 1.5rem; }
+  .slot {
+    position: absolute;
+    inset: 0;
+    background: rgba(245, 240, 232, 0.05);
+    display: grid;
+    place-items: center;
+  }
+  .slot::after {
+    content: attr(data-slot);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.28);
+  }
+  .slot--hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0.1) 0%, rgba(14, 14, 14, 0.55) 100%);
+    z-index: 1;
+  }
+  .slot--hero::after {
+    position: absolute;
+    right: calc(var(--unit) * 2);
+    top: calc(var(--unit) * 2);
+  }
+
+  .promise { padding-top: calc(var(--unit) * 10); }
+  .promise__body { padding-top: calc(var(--unit) * 6); max-width: 68ch; }
+  .promise__lede { margin-top: calc(var(--unit) * 3); }
+  .promise__body h2::first-letter { color: var(--accent); }
+
+  .apertures {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 96vh;
+    padding: var(--inset);
+    background: var(--ground);
+  }
+  .aperture {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    border: var(--hair) solid var(--sage);
+    overflow: hidden;
+    cursor: default;
+  }
+  .aperture--1 { width: min(88vw, 960px); aspect-ratio: 16 / 9; }
+  .aperture--2 { width: min(64vw, 690px); aspect-ratio: 16 / 9; }
+  .aperture--3 { width: min(41vw, 440px); aspect-ratio: 16 / 9; border-color: var(--accent); }
+
+  .aperture__panel {
+    position: absolute;
+    inset: 0;
+    background: var(--paper);
+    transition: transform var(--t-slow) var(--ease);
+    z-index: 1;
+  }
+  .aperture:hover .aperture__panel,
+  .aperture:focus-visible .aperture__panel { transform: translateX(-101%); }
+
+  .aperture__label {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: calc(var(--unit) * 2);
+    mix-blend-mode: difference;
+    color: #fff;
+  }
+  .aperture__label .eyebrow { color: var(--accent); }
+  .aperture__name {
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+  }
+
+  .invite {
+    background: var(--ground);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--unit) * 3);
+  }
+  .invite__lede { max-width: 48ch; }
+  .invite__more {
+    font-size: 14px;
+    color: var(--mute-on-ground);
+  }
+
+  @media (max-width: 860px) {
+    .apertures {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--unit) * 3);
+      min-height: 0;
+      padding: calc(var(--unit) * 8) var(--inset);
+    }
+    .aperture,
+    .aperture--1,
+    .aperture--2,
+    .aperture--3 { position: relative; width: 100%; }
+    .aperture__panel { display: none; }
   }
 </style>

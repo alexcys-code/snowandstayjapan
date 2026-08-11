@@ -1,18 +1,62 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import { BRAND } from '../data/copy';
 const { active = '' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
 
-<nav>
-  <div class="nav-inner">
-    <a class="nav-brand" href={base}>🇯🇵 <span data-i18n="siteTitle">Japan 2026</span></a>
-    <ul class="nav-links">
-      <li><a href={base} class={active === 'home' ? 'active' : ''} data-i18n="navOverview">Overview</a></li>
-      <li><a href={`${base}yatsugatake/`} class={active === 'yatsugatake' ? 'active' : ''}>Yatsugatake</a></li>
-      <li><a href={`${base}nearby/`} class={active === 'nearby' ? 'active' : ''} data-i18n="navNearby">Nearby Resorts</a></li>
-      <li><a href={`${base}about/`} class={active === 'about' ? 'active' : ''} data-i18n="navAbout">About</a></li>
-    </ul>
-    <LanguageSwitcher />
-  </div>
-</nav>
+<header class="nav">
+  <a class="nav__brand" href={base}>{BRAND}</a>
+  <nav class="nav__links" aria-label="Primary">
+    <a href={base} class={active === 'home' ? 'on' : ''} data-i18n="navHome">Home</a>
+    <a href={`${base}stay/`} class={active === 'stay' ? 'on' : ''} data-i18n="navStay">The week</a>
+    <a href={`${base}mountains/`} class={active === 'mountains' ? 'on' : ''} data-i18n="navMountains">Mountains</a>
+    <a href={`${base}about/`} class={active === 'about' ? 'on' : ''} data-i18n="navAbout">About</a>
+  </nav>
+  <LanguageSwitcher />
+</header>
+
+<style>
+  .nav {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--unit) * 3);
+    padding: calc(var(--unit) * 2.5) var(--inset);
+    background: var(--ground);
+    border-bottom: var(--hair) solid rgba(138, 154, 143, 0.3);
+  }
+  .nav__brand {
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: 19px;
+    text-decoration: none;
+    color: var(--ink-on-ground);
+    white-space: nowrap;
+  }
+  .nav__links {
+    display: flex;
+    gap: calc(var(--unit) * 3.5);
+    flex-wrap: wrap;
+  }
+  .nav__links a {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--mute-on-ground);
+    transition: color var(--t-fast) var(--ease);
+  }
+  .nav__links a:hover { color: var(--ink-on-ground); }
+  .nav__links a.on { color: var(--accent); }
+
+  @media (max-width: 780px) {
+    .nav {
+      flex-wrap: wrap;
+      gap: calc(var(--unit) * 1.5);
+    }
+    .nav__links { order: 3; width: 100%; gap: calc(var(--unit) * 2.5); }
+    .nav__links a { font-size: 13px; }
+  }
+</style>

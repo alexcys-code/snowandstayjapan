@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pillow from '../components/Pillow.astro';
+import { yatsugatake } from '../data/yatsugatake';
+import { nearby } from '../data/nearby';
+
+type Peak = { name: string; nameJa: string; vertical: number; summit: number; ours: boolean };
+
+const ours: Peak[] = [
+  { name: 'Kurumayama SKYPARK', nameJa: '車山高原SKYPARK', vertical: 355, summit: 1925, ours: true },
+  { name: 'Pilatus Tateshina', nameJa: 'ピラタス蓼科', vertical: 466, summit: 2237, ours: true },
+];
+
+const fromData: Peak[] = [...(yatsugatake.skiAreas ?? []), ...(nearby.skiAreas ?? [])].map((s) => ({
+  name: s.name,
+  nameJa: s.name_ja,
+  vertical: s.vertical_m,
+  summit: s.elevation_summit_m,
+  ours: false,
+}));
+
+const hakuba = fromData.find((p) => /hakuba/i.test(p.name));
+const ridge = [...ours, ...fromData.filter((p) => !/hakuba/i.test(p.name))].sort(
+  (a, b) => a.summit - b.summit
+);
+const maxV = Math.max(...ridge.map((p) => p.vertical));
+---
+
+<Layout active="mountains" title="Mountains">
+  <section class="word" data-enter="aperture">
+    <h1 class="word__w" data-i18n="mtWord">Snow</h1>
+    <hr class="word__rule" />
+  </section>
+
+  <section class="section ridgewrap">
+    <p class="lede ridgewrap__lede" data-i18n="mtLede">
+      Every ski area within reach of the house, drawn to scale. Bar height is real vertical drop.
+    </p>
+
+    <div class="ridge" data-enter="recede" role="img" aria-label="Ski areas by vertical drop">
+      {ridge.map((p) => (
+        <div class:list={['peak', p.ours && 'peak--ours']} style={`height:${Math.max(14, Math.round((p.vertical / maxV) * 100))}%`}>
+          <span class="peak__v">{p.vertical}</span>
+          <span class="peak__n">{p.name}</span>
+        </div>
+      ))}
+    </div>
+    <p class="ridge__cap" data-i18n="ridgeCaption">Vertical drop, metres</p>
+    <p class="ridge__note" data-i18n="mtNote">
+      We ski Kurumayama and Pilatus Tateshina on the Christmas week.
+    </p>
+  </section>
+
+  <Pillow key="restOne" fallback="Snow out the front door." tone="paper" align="end" mark="bl" />
+
+  {hakuba && (
+    <section class="section hakuba" data-enter="dissolve">
+      <hr class="rule" />
+      <h2 class="display hakuba__h" data-i18n="hakubaTitle">And then there is Hakuba.</h2>
+      <p class="lede hakuba__b" data-i18n="hakubaBody">
+        World-class, and the most internationally famous skiing in Japan — which is exactly the problem in peak season.
+      </p>
+      <p class="hakuba__stat">{hakuba.vertical} m · {hakuba.summit} m</p>
+    </section>
+  )}
+</Layout>
+
+<style>
+  .word {
+    min-height: 74vh;
+    padding: var(--inset);
+    background: var(--ground);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .word__w {
+    font-size: clamp(4rem, 21vw, 14rem);
+    line-height: 0.9;
+    color: var(--ink-on-ground);
+  }
+  .word__rule {
+    border: 0;
+    height: 3px;
+    background: var(--accent);
+    width: min(320px, 46vw);
+    margin: calc(var(--unit) * 4) 0 0;
+  }
+
+  .ridgewrap { background: var(--shadow); }
+  .ridgewrap__lede { color: rgba(245, 240, 232, 0.6); max-width: 54ch; }
+
+  .ridge {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 46vh;
+    min-height: 260px;
+    margin-top: calc(var(--unit) * 9);
+    border-bottom: var(--hair) solid var(--sage);
+  }
+  .peak {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    background: rgba(245, 240, 232, 0.06);
+    border: var(--hair) solid rgba(245, 240, 232, 0.14);
+    border-bottom: 0;
+    transition: background var(--t-fast) var(--ease);
+  }
+  .peak:hover { background: rgba(245, 240, 232, 0.14); }
+  .peak--ours { border-top: 3px solid var(--accent); }
+
+  .peak__v {
+    position: absolute;
+    bottom: calc(100% + 7px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: 13px;
+    color: rgba(245, 240, 232, 0.55);
+  }
+  .peak--ours .peak__v { color: var(--accent); }
+
+  .peak__n {
+    position: absolute;
+    top: calc(100% + 9px);
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    line-height: 1.35;
+    text-align: center;
+    color: rgba(245, 240, 232, 0.4);
+    overflow-wrap: anywhere;
+  }
+
+  .ridge__cap {
+    margin-top: calc(var(--unit) * 11);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.34);
+  }
+  .ridge__note {
+    margin-top: calc(var(--unit) * 4);
+    color: rgba(245, 240, 232, 0.6);
+    max-width: 58ch;
+    font-size: 15px;
+  }
+
+  .hakuba { background: var(--ground); }
+  .hakuba__h { margin-top: calc(var(--unit) * 5); }
+  .hakuba__b { margin-top: calc(var(--unit) * 3); }
+  .hakuba__stat {
+    margin-top: calc(var(--unit) * 3);
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    color: var(--accent);
+  }
+
+  @media (max-width: 700px) {
+    .ridge { height: 34vh; min-height: 190px; overflow-x: auto; }
+    .peak { min-width: 26px; }
+    .peak__n { font-size: 9px; }
+  }
+</style>

@@ -1,35 +1,43 @@
 ---
-interface Props {
-  footerText: string;
-  repoUrl: string;
-}
-const { footerText, repoUrl } = Astro.props;
+import { INSTAGRAM, HANDLE, BRAND } from '../data/copy';
 ---
-<footer>
-  <div class="container footer-inner">
-    <p class="footer-text">{footerText}</p>
-    <p class="footer-sub">Built with Astro · Hosted on <a href={repoUrl} target="_blank" rel="noopener">GitHub Pages</a></p>
+
+<footer class="foot">
+  <hr class="rule" />
+  <div class="foot__row">
+    <span class="foot__brand">{BRAND}</span>
+    <span class="foot__note" data-i18n="footerNote">Tateshina · Chino · Nagano</span>
+    <a class="foot__handle" href={INSTAGRAM} rel="noopener noreferrer" target="_blank">{HANDLE}</a>
   </div>
 </footer>
 
 <style>
-  footer { border-top: 1px solid var(--cream-dark); padding: 2rem; }
-  .footer-inner {
-    max-width: 1100px;
-    margin: 0 auto;
+  .foot {
+    background: var(--ground);
+    padding: 0 var(--inset) calc(var(--unit) * 6);
+  }
+  .foot__row {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-    text-align: center;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: calc(var(--unit) * 2);
+    padding-top: calc(var(--unit) * 4);
   }
-  .footer-text { font-family: var(--font-display); font-size: 1rem; color: var(--ink-muted); }
-  .footer-sub { font-size: 0.75rem; color: var(--ink-faint); }
-  .footer-sub a {
-    color: var(--pt-green);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    font-weight: 500;
+  .foot__brand {
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: 17px;
+    color: var(--ink-on-ground);
   }
-  .footer-sub a:hover { text-decoration-thickness: 2px; }
+  .foot__note {
+    font-size: 13px;
+    color: var(--mute-on-ground);
+  }
+  .foot__handle {
+    font-size: 14px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .foot__handle:hover { text-decoration: underline; }
 </style>
