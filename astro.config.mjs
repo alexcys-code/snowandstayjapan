@@ -1,12 +1,11 @@
 import { defineConfig } from 'astro/config';
 
-// Change `base` to match your GitHub repository name.
-// e.g. base: '/japan-trip' for github.com/yourname/japan-trip
-// or base: '/' for a custom domain
+// Served from the custom domain snowandstayjapan.com via GitHub Pages.
+// The domain is declared in public/CNAME, which Pages reads on deploy.
 
 export default defineConfig({
-  site: 'https://alexcys-code.github.io',
-  base: '/snowandstayjapan',
+  site: 'https://snowandstayjapan.com',
+  base: '/',
   output: 'static',
   trailingSlash: 'always',
 });
