@@ -8,7 +8,8 @@ const base = import.meta.env.BASE_URL;
 <Layout active="home">
   <section class="threshold" data-enter="aperture">
     <div class="threshold__frame frame">
-      <div class="slot slot--hero" data-slot="Kominka exterior, snow"></div>
+      <img class="shot" src={`${base}img/kominka-exterior.jpg`} alt="" fetchpriority="high" />
+      <div class="scrim"></div>
       <div class="threshold__copy">
         <p class="eyebrow" data-i18n="homeEyebrow">Dec 23 – 29 · Tateshina, Nagano</p>
         <h1 class="threshold__title" data-i18n="homeTitle">Christmas in a 150-year-old kominka.</h1>
@@ -33,7 +34,7 @@ const base = import.meta.env.BASE_URL;
 
   <section class="apertures" data-enter="recede" aria-label="Stay, ski, rest">
     <article class="aperture aperture--1" tabindex="0">
-      <div class="slot" data-slot="The house"></div>
+      <img class="shot" src={`${base}img/kominka-interior.jpg`} alt="Timber beams and a wood stove inside the kominka" loading="lazy" />
       <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apStayLabel">You sleep here</span>
@@ -41,7 +42,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </article>
     <article class="aperture aperture--2" tabindex="0">
-      <div class="slot" data-slot="The slopes"></div>
+      <img class="shot" src={`${base}img/kurumayama.webp`} alt="Open slopes at Kurumayama" loading="lazy" />
       <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apSkiLabel">You ski here</span>
@@ -49,7 +50,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </article>
     <article class="aperture aperture--3" tabindex="0">
-      <div class="slot" data-slot="Suwa, Narai-juku"></div>
+      <img class="shot" src={`${base}img/narai.webp`} alt="The old post town at Narai-juku under snow" loading="lazy" />
       <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apRestLabel">You rest here</span>
@@ -101,31 +102,18 @@ const base = import.meta.env.BASE_URL;
     max-width: 54ch;
   }
 
-  .slot {
+  .shot {
     position: absolute;
     inset: 0;
-    background: rgba(245, 240, 232, 0.05);
-    display: grid;
-    place-items: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .slot::after {
-    content: attr(data-slot);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.28);
-  }
-  .slot--hero::before {
-    content: '';
+  .scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(14, 14, 14, 0.1) 0%, rgba(14, 14, 14, 0.55) 100%);
     z-index: 1;
-  }
-  .slot--hero::after {
-    position: absolute;
-    right: calc(var(--unit) * 2);
-    top: calc(var(--unit) * 2);
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0.2) 0%, rgba(14, 14, 14, 0.35) 45%, rgba(14, 14, 14, 0.82) 100%);
   }
 
   .promise { padding-top: calc(var(--unit) * 10); }

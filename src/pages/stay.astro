@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Pillow from '../components/Pillow.astro';
 import { INSTAGRAM } from '../data/copy';
+const base = import.meta.env.BASE_URL;
 
 const works = [
   { k: 'w1k', kf: 'Sleep', v: 'w1v', vf: 'The whole house, just your lot. Sleeps 2–6.' },
@@ -82,6 +83,7 @@ const days = [
 
   <section class="day" data-enter="split" aria-label="The same afternoon">
     <div class="day__col col-a">
+      <img class="day__shot" src={`${base}img/pilatus.webp`} alt="A long, gentle beginner run at Pilatus Tateshina" loading="lazy" />
       <span class="eyebrow" data-i18n="daySkierLabel">Skis</span>
       <h2 class="day__h" data-i18n="daySkierTitle">Big, gentle slopes. Nobody watching you fall over.</h2>
       <p class="day__b" data-i18n="daySkierBody">
@@ -90,6 +92,7 @@ const days = [
     </div>
     <div class="day__seam" aria-hidden="true"></div>
     <div class="day__col col-b">
+      <img class="day__shot" src={`${base}img/ropeway.webp`} alt="The snow-covered lava plateau at the top of the ropeway" loading="lazy" />
       <span class="eyebrow" data-i18n="dayRestLabel">Doesn’t ski</span>
       <h2 class="day__h" data-i18n="dayRestTitle">Cable car to the 2,237 m viewing deck. No skis required.</h2>
       <p class="day__b" data-i18n="dayRestBody">
@@ -107,13 +110,13 @@ const days = [
     <p class="eyebrow" data-i18n="offEyebrow">The days in between</p>
     <div class="off__pair">
       <article class="off__one">
-        <div class="slot" data-slot="Lake Suwa"></div>
+        <img class="off__shot" src={`${base}img/suwa.webp`} alt="Lake Suwa in winter" loading="lazy" />
         <h3 class="off__n" data-i18n="off1Name">Lake Suwa</h3>
         <span class="off__t" data-i18n="off1Time">30 min away</span>
         <p class="off__b" data-i18n="off1Body">A hot spring town on the water, an easy lakeside walk and a very old shrine.</p>
       </article>
       <article class="off__one">
-        <div class="slot" data-slot="Narai-juku"></div>
+        <img class="off__shot" src={`${base}img/narai.webp`} alt="Narai-juku street under snow" loading="lazy" />
         <h3 class="off__n" data-i18n="off2Name">Narai-juku</h3>
         <span class="off__t" data-i18n="off2Time">About an hour</span>
         <p class="off__b" data-i18n="off2Body">A whole street of 400-year-old wooden inns, under snow, with almost nobody in it.</p>
@@ -282,9 +285,10 @@ const days = [
     margin-top: calc(var(--unit) * 5);
   }
   .off__one { display: flex; flex-direction: column; gap: calc(var(--unit) * 1); }
-  .off__one .slot {
-    position: relative;
+  .off__shot {
+    width: 100%;
     aspect-ratio: 4 / 3;
+    object-fit: cover;
     border: var(--hair) solid var(--sage);
     margin-bottom: calc(var(--unit) * 2);
   }
@@ -375,17 +379,12 @@ const days = [
   }
   .ask__lede { max-width: 46ch; }
 
-  .slot {
-    background: rgba(245, 240, 232, 0.05);
-    display: grid;
-    place-items: center;
-  }
-  .slot::after {
-    content: attr(data-slot);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.28);
+  .day__shot {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border: var(--hair) solid rgba(26, 48, 40, 0.2);
+    margin-bottom: auto;
   }
 
   @media (max-width: 860px) {

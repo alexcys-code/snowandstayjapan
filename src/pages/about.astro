@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Pillow from '../components/Pillow.astro';
 import { INSTAGRAM } from '../data/copy';
+const base = import.meta.env.BASE_URL;
 
 const notes = [
   { n: 'aboutN1', nf: 'Based in Chino, Nagano', b: 'aboutN1b', bf: 'Two hours from Shinjuku on one train.' },
@@ -39,7 +40,7 @@ const notes = [
   <section class="section paper closing" data-enter="seam">
     <hr class="rule seam-rule" />
     <div class="seam-body">
-      <div class="slot" data-slot="The house, winter"></div>
+      <img class="closing__shot" src={`${base}img/window-view.jpg`} alt="The snowy peaks seen from a window of the house" loading="lazy" />
     </div>
   </section>
 
@@ -91,21 +92,12 @@ const notes = [
   .note__b { font-size: 13px; color: var(--mute-on-paper); margin-top: 4px; }
 
   .closing { padding-top: 0; }
-  .closing .slot {
-    position: relative;
+  .closing__shot {
+    width: 100%;
     aspect-ratio: 21 / 9;
+    object-fit: cover;
     margin-top: calc(var(--unit) * 6);
     border: var(--hair) solid var(--sage);
-    background: rgba(26, 48, 40, 0.06);
-    display: grid;
-    place-items: center;
-  }
-  .closing .slot::after {
-    content: attr(data-slot);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(26, 48, 40, 0.3);
   }
 
   .ask {
