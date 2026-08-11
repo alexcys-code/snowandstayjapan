@@ -8,4 +8,8 @@ export default defineConfig({
   base: '/',
   output: 'static',
   trailingSlash: 'always',
+  // /stay/ was the single package page before stays became a collection.
+  redirects: {
+    '/stay/': '/stays/tateshina/',
+  },
 });

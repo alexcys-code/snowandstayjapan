@@ -1,0 +1,156 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { stays, moreComing } from '../../data/stays';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout active="stay" title="Stays">
+  <section class="intro section paper" data-enter="seam">
+    <hr class="rule seam-rule" />
+    <div class="seam-body intro__body">
+      <p class="eyebrow" data-i18n="staysEyebrow">One house at a time</p>
+      <h1 class="display intro__title" data-i18n="staysTitle">Where you stay.</h1>
+      <p class="lede intro__lede" data-i18n="staysLede">
+        One group per house, one week at a time.
+      </p>
+    </div>
+  </section>
+
+  {stays.map((s) => (
+    <section class="doorway" data-enter="aperture">
+      <a class="doorway__frame frame" href={`${base}stays/${s.slug}/`}>
+        {s.image && <img class="shot" src={`${base}img/${s.image}`} alt="" loading="lazy" />}
+        <div class="scrim"></div>
+        <div class="doorway__copy">
+          <p class="eyebrow" data-i18n={s.keys.location}>Tateshina · Chino, Nagano</p>
+          <h2 class="doorway__name">{s.name}</h2>
+          <p class="doorway__dates" data-i18n={s.keys.dates}>Dec 23 – 29</p>
+          <p class="doorway__blurb" data-i18n={s.keys.blurb}>A 150-year-old kominka, restored.</p>
+          <div class="doorway__foot">
+            <span class="doorway__meta" data-i18n={s.keys.meta}>Sleeps 2–6 · 6 nights · whole house</span>
+            <span class="doorway__go" data-i18n="syEnter">See the week</span>
+          </div>
+        </div>
+      </a>
+    </section>
+  ))}
+
+  <section class="section closed" data-enter="dissolve">
+    <div class="closed__frame">
+      <h2 class="closed__title" data-i18n={moreComing.keys.title}>More houses, other valleys.</h2>
+      <p class="closed__blurb" data-i18n={moreComing.keys.blurb}>
+        We are looking at two more places in Nagano.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .intro { padding-top: calc(var(--unit) * 12); }
+  .intro__body { padding-top: calc(var(--unit) * 6); max-width: 64ch; }
+  .intro__title { margin-top: calc(var(--unit) * 2); }
+  .intro__lede { margin-top: calc(var(--unit) * 3); }
+
+  .doorway {
+    min-height: 92vh;
+    padding: var(--inset);
+    background: var(--ground);
+    display: flex;
+  }
+  .doorway__frame {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink-on-ground);
+  }
+  .shot {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--t-slow) var(--ease);
+  }
+  .scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0.15) 0%, rgba(14, 14, 14, 0.4) 45%, rgba(14, 14, 14, 0.88) 100%);
+  }
+  .doorway__copy {
+    position: relative;
+    z-index: 2;
+    padding: calc(var(--unit) * 5);
+    max-width: 56ch;
+  }
+  .doorway__name {
+    font-size: clamp(2rem, 5.2vw, 4rem);
+    margin: calc(var(--unit) * 1.5) 0 0;
+  }
+  .doorway__dates {
+    margin-top: calc(var(--unit) * 1);
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    color: var(--accent-lift);
+  }
+  .doorway__blurb {
+    margin-top: calc(var(--unit) * 2.5);
+    color: rgba(245, 240, 232, 0.82);
+    font-size: 16px;
+  }
+  .doorway__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: calc(var(--unit) * 3);
+    margin-top: calc(var(--unit) * 4);
+    padding-top: calc(var(--unit) * 2);
+    border-top: var(--hair) solid rgba(245, 240, 232, 0.3);
+  }
+  .doorway__meta {
+    font-size: 13px;
+    color: rgba(245, 240, 232, 0.7);
+  }
+  .doorway__go {
+    margin-left: auto;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent-lift);
+  }
+  .doorway__go::after {
+    content: ' \2192';
+    display: inline-block;
+    transition: transform var(--t-fast) var(--ease);
+  }
+  .doorway__frame:hover .doorway__go::after,
+  .doorway__frame:focus-visible .doorway__go::after { transform: translateX(4px); }
+
+  .closed { background: var(--ground); }
+  .closed__frame {
+    border: var(--hair) dashed var(--sage);
+    padding: calc(var(--unit) * 8) calc(var(--unit) * 5);
+    text-align: center;
+  }
+  .closed__title {
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+    color: var(--mute-on-ground);
+  }
+  .closed__blurb {
+    margin: calc(var(--unit) * 2) auto 0;
+    max-width: 52ch;
+    font-size: 15px;
+    color: var(--mute-on-ground);
+  }
+
+  @media (max-width: 640px) {
+    .doorway { min-height: 76vh; }
+    .doorway__copy { padding: calc(var(--unit) * 3); }
+    .doorway__go { margin-left: 0; }
+  }
+</style>

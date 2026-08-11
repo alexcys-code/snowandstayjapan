@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL;
   <a class="nav__brand" href={base}>{BRAND}</a>
   <nav class="nav__links" aria-label="Primary">
     <a href={base} class={active === 'home' ? 'on' : ''} data-i18n="navHome">Home</a>
-    <a href={`${base}stay/`} class={active === 'stay' ? 'on' : ''} data-i18n="navStay">The week</a>
+    <a href={`${base}stays/`} class={active === 'stay' ? 'on' : ''} data-i18n="navStay">Stays</a>
     <a href={`${base}mountains/`} class={active === 'mountains' ? 'on' : ''} data-i18n="navMountains">Mountains</a>
     <a href={`${base}about/`} class={active === 'about' ? 'on' : ''} data-i18n="navAbout">About</a>
   </nav>

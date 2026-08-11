@@ -32,7 +32,8 @@
       "Bash(ls ~/.nvm/versions/node/*/bin/npm)",
       "Bash(ls /opt/homebrew/bin/node*)",
       "Read(//Users/alexcys/**)",
-      "Bash(/opt/homebrew/bin/npm run:*)"
+      "Bash(/opt/homebrew/bin/npm run:*)",
+      "WebFetch(domain:tourism.buddica.jp)"
     ]
   },
   "enabledMcpjsonServers": [
