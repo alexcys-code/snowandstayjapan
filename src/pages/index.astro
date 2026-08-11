@@ -11,10 +11,10 @@ const base = import.meta.env.BASE_URL;
       <img class="shot" src={`${base}img/house-exterior.jpg`} alt="" fetchpriority="high" />
       <div class="scrim"></div>
       <div class="threshold__copy">
-        <p class="eyebrow" data-i18n="homeEyebrow">Dec 23 – 29 · Tateshina, Nagano</p>
-        <h1 class="threshold__title" data-i18n="homeTitle">Christmas in a 150-year-old kominka.</h1>
+        <p class="eyebrow" data-i18n="homeEyebrow">Family ski weeks · Nagano, Japan</p>
+        <h1 class="threshold__title" data-i18n="homeTitle">A whole house in the snow, and nobody else in it.</h1>
         <p class="threshold__lede" data-i18n="homeLede">
-          A kominka is an old Japanese country house. This one is yours for the week — with snow out the front door and the kids learning to ski before New Year.
+          We rent you an old Japanese country house for a week, drive you to the slopes and back, and put a coach on the snow with you. Most of our guests have never skied before.
         </p>
       </div>
     </div>
@@ -27,7 +27,7 @@ const base = import.meta.env.BASE_URL;
     <div class="seam-body promise__body">
       <h2 class="display" data-i18n="promiseTitle">One house. We do all the driving.</h2>
       <p class="lede promise__lede" data-i18n="promiseBody">
-        You take one train out of Tokyo. We meet you at the station and drive you the last 25 minutes to the door.
+        One group per house, one week at a time. We meet you at the station, run you to the slopes every ski day, take you to the hot springs and the old towns on the rest days, and get you back to the train at the end.
       </p>
     </div>
   </section>
@@ -38,7 +38,7 @@ const base = import.meta.env.BASE_URL;
       <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apStayLabel">You sleep here</span>
-        <span class="aperture__name" data-i18n="apStayName">Kominka Kozumi</span>
+        <span class="aperture__name" data-i18n="apStayName">A whole house</span>
       </div>
     </article>
     <article class="aperture aperture--2" tabindex="0">
@@ -46,7 +46,7 @@ const base = import.meta.env.BASE_URL;
       <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apSkiLabel">You ski here</span>
-        <span class="aperture__name" data-i18n="apSkiName">Kurumayama &amp; Pilatus</span>
+        <span class="aperture__name" data-i18n="apSkiName">Quiet beginner slopes</span>
       </div>
     </article>
     <article class="aperture aperture--3" tabindex="0">
@@ -54,20 +54,23 @@ const base = import.meta.env.BASE_URL;
       <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apRestLabel">You rest here</span>
-        <span class="aperture__name" data-i18n="apRestName">Suwa &amp; Narai-juku</span>
+        <span class="aperture__name" data-i18n="apRestName">Onsen and old towns</span>
       </div>
     </article>
   </section>
 
-  <Pillow key="restTwo" fallback="Christmas morning happens in a living room." tone="paper" align="start" mark="tr" />
+  <Pillow key="restTwo" fallback="Mornings happen in a living room, not a hotel corridor." tone="paper" align="start" mark="tr" />
 
   <section class="invite section" data-enter="settle">
-    <h2 class="display invite__title" data-i18n="inviteTitle">Christmas dates are open.</h2>
+    <h2 class="display invite__title" data-i18n="inviteTitle">Tell us when, and who has never skied.</h2>
     <p class="lede invite__lede" data-i18n="inviteBody">
-      Tell us how many are travelling and how many want to ski. We’ll send back the week, with a price on it.
+      We build the week around your group — your dates, how many of you, how many have never stood on skis. Send us that and we will send back a plan with a price on it.
     </p>
     <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="inviteCta">DM us “SNOW”</a>
-    <a class="invite__more" href={`${base}stays/`} data-i18n="navStay">Stays</a>
+    <a class="invite__open" href={`${base}stays/tateshina/`}>
+      <span class="invite__dot" aria-hidden="true"></span>
+      <span data-i18n="homeOpenNow">Open now — Kominka Kozumi, Tateshina · Dec 23 – 29</span>
+    </a>
   </section>
 </Layout>
 
@@ -180,9 +183,28 @@ const base = import.meta.env.BASE_URL;
     gap: calc(var(--unit) * 3);
   }
   .invite__lede { max-width: 48ch; }
-  .invite__more {
+  .invite__open {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--unit) * 1.5);
+    margin-top: calc(var(--unit) * 2);
+    padding: calc(var(--unit) * 1.5) calc(var(--unit) * 3);
+    border: var(--hair) solid rgba(138, 154, 143, 0.45);
     font-size: 14px;
     color: var(--mute-on-ground);
+    text-decoration: none;
+    transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  }
+  .invite__open:hover,
+  .invite__open:focus-visible {
+    border-color: var(--accent);
+    color: var(--ink-on-ground);
+  }
+  .invite__dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    background: var(--accent);
   }
 
   @media (max-width: 860px) {
