@@ -1,29 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Pillow from '../components/Pillow.astro';
-import { yatsugatake } from '../data/yatsugatake';
+import { resorts } from '../data/resorts';
 import { nearby } from '../data/nearby';
 
-type Peak = { name: string; nameJa: string; vertical: number; summit: number; ours: boolean };
-
-const ours: Peak[] = [
-  { name: 'Kurumayama SKYPARK', nameJa: '車山高原SKYPARK', vertical: 355, summit: 1925, ours: true },
-  { name: 'Pilatus Tateshina', nameJa: 'ピラタス蓼科', vertical: 466, summit: 2237, ours: true },
-];
-
-const fromData: Peak[] = [...(yatsugatake.skiAreas ?? []), ...(nearby.skiAreas ?? [])].map((s) => ({
-  name: s.name,
-  nameJa: s.name_ja,
-  vertical: s.vertical_m,
-  summit: s.elevation_summit_m,
-  ours: false,
-}));
-
-const hakuba = fromData.find((p) => /hakuba/i.test(p.name));
-const ridge = [...ours, ...fromData.filter((p) => !/hakuba/i.test(p.name))].sort(
-  (a, b) => a.summit - b.summit
-);
-const maxV = Math.max(...ridge.map((p) => p.vertical));
+const hakuba = (nearby.skiAreas ?? []).find((s) => /hakuba/i.test(s.name));
 ---
 
 <Layout active="mountains" title="Mountains">
@@ -32,53 +13,82 @@ const maxV = Math.max(...ridge.map((p) => p.vertical));
     <hr class="word__rule" />
   </section>
 
-  <section class="section ridgewrap">
-    <p class="lede ridgewrap__lede" data-i18n="mtLede">
-      Every ski area within reach of the two bases, drawn to scale. Bar height is real vertical drop.
-    </p>
-
-    <div class="ridge" data-enter="recede" role="img" aria-label="Ski areas by vertical drop">
-      {ridge.map((p) => (
-        <div class:list={['peak', p.ours && 'peak--ours']} style={`height:${Math.max(14, Math.round((p.vertical / maxV) * 100))}%`}>
-          <span class="peak__v">{p.vertical}</span>
-          <span class="peak__n">{p.name}</span>
-        </div>
-      ))}
+  <section class="section paper choose" data-enter="seam">
+    <hr class="rule seam-rule" />
+    <div class="seam-body choose__body">
+      <p class="eyebrow" data-i18n="mtChooseEyebrow">Thirteen resorts, one valley</p>
+      <h2 class="display choose__title" data-i18n="mtChooseTitle">We pick the mountain. You pick nothing.</h2>
+      <p class="lede choose__lede" data-i18n="mtChooseLede">
+        Training can be based at any of the thirteen resorts around the Yatsugatake highlands.
+      </p>
     </div>
-    <p class="ridge__cap" data-i18n="ridgeCaption">Vertical drop, metres</p>
-    <p class="ridge__note" data-i18n="mtNote">
-      We ski these ourselves from the two bases.
-    </p>
+  </section>
+
+  <section class="list" data-enter="dissolve" aria-label="Resorts by how well they suit beginners">
+    {resorts.map((r) => (
+      <article class:list={['row', r.ours && 'row--ours']}>
+        <div class="row__id">
+          <h3 class="row__name">{r.name}</h3>
+          <p class="row__ja">{r.nameJa}</p>
+          {r.ours && <span class="row__ours" data-i18n="mtOurs">We ski this one</span>}
+        </div>
+
+        <div class="row__data">
+          {r.green !== null && r.total !== null ? (
+            <>
+              <div class="bar" role="img" aria-label={`${r.green} of ${r.total} courses are beginner`}>
+                <span class="bar__fill" style={`width:${Math.round((r.green / r.total) * 100)}%`}></span>
+              </div>
+              <p class="row__stat">
+                <strong>{r.green}</strong>/{r.total} <span data-i18n="mtBeginnerLabel">beginner courses</span>
+              </p>
+            </>
+          ) : (
+            <p class="row__stat row__stat--tbc" data-i18n="mtNoData">Course counts to confirm</p>
+          )}
+          {r.longestGreen && (
+            <p class="row__long">
+              <strong>{(r.longestGreen / 1000).toFixed(1)} km</strong>
+              <span data-i18n="mtLongestLabel">longest beginner run</span>
+            </p>
+          )}
+        </div>
+
+        <ul class="chips">
+          {r.carpet && <li data-i18n="mtCarpet">Magic carpet</li>}
+          {r.kidsPark && <li data-i18n="mtKidsPark">Snow play area</li>}
+          {r.nonSkierLift && <li data-i18n="mtNonSkier">Lift for non-skiers</li>}
+          {r.night && <li data-i18n="mtNight">Night skiing</li>}
+        </ul>
+
+        {r.ours && <p class="row__note" data-i18n={r.noteKey}></p>}
+      </article>
+    ))}
   </section>
 
   <Pillow key="restOne" fallback="Snow out the front door." tone="paper" align="end" mark="bl" />
 
   {hakuba && (
-    <section class="section hakuba" data-enter="dissolve">
+    <section class="section hakuba" data-enter="settle">
       <hr class="rule" />
       <h2 class="display hakuba__h" data-i18n="hakubaTitle">And then there is Hakuba.</h2>
       <p class="lede hakuba__b" data-i18n="hakubaBody">
         World-class, and the most internationally famous skiing in Japan — which is exactly the problem in peak season.
       </p>
-      <p class="hakuba__stat">{hakuba.vertical} m · {hakuba.summit} m</p>
     </section>
   )}
 </Layout>
 
 <style>
   .word {
-    min-height: 74vh;
+    min-height: 68vh;
     padding: var(--inset);
     background: var(--ground);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
   }
-  .word__w {
-    font-size: clamp(4rem, 21vw, 14rem);
-    line-height: 0.9;
-    color: var(--ink-on-ground);
-  }
+  .word__w { font-size: clamp(4rem, 21vw, 14rem); line-height: 0.9; color: var(--ink-on-ground); }
   .word__rule {
     border: 0;
     height: 3px;
@@ -87,81 +97,87 @@ const maxV = Math.max(...ridge.map((p) => p.vertical));
     margin: calc(var(--unit) * 4) 0 0;
   }
 
-  .ridgewrap { background: var(--shadow); }
-  .ridgewrap__lede { color: rgba(245, 240, 232, 0.6); max-width: 54ch; }
+  .choose { padding-bottom: calc(var(--unit) * 6); }
+  .choose__body { padding-top: calc(var(--unit) * 6); max-width: 66ch; }
+  .choose__title { margin-top: calc(var(--unit) * 2); }
+  .choose__lede { margin-top: calc(var(--unit) * 3); }
 
-  .ridge {
-    display: flex;
-    align-items: flex-end;
-    gap: 2px;
-    height: 46vh;
-    min-height: 260px;
-    margin-top: calc(var(--unit) * 9);
-    border-bottom: var(--hair) solid var(--sage);
+  .list {
+    background: var(--paper);
+    color: var(--ink-on-paper);
+    padding: 0 var(--inset) calc(var(--unit) * 12);
   }
-  .peak {
-    position: relative;
-    flex: 1 1 0;
-    min-width: 0;
-    background: rgba(245, 240, 232, 0.06);
-    border: var(--hair) solid rgba(245, 240, 232, 0.14);
-    border-bottom: 0;
-    transition: background var(--t-fast) var(--ease);
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: calc(var(--unit) * 4);
+    align-items: start;
+    padding: calc(var(--unit) * 4) 0;
+    border-top: var(--hair) solid rgba(26, 48, 40, 0.18);
   }
-  .peak:hover { background: rgba(245, 240, 232, 0.14); }
-  .peak--ours { border-top: 3px solid var(--accent); }
+  .row--ours { border-left: 3px solid var(--accent); padding-left: calc(var(--unit) * 3); }
 
-  .peak__v {
-    position: absolute;
-    bottom: calc(100% + 7px);
-    left: 50%;
-    transform: translateX(-50%);
+  .row__name {
     font-family: var(--serif);
     font-weight: var(--serif-weight);
-    font-size: 13px;
-    color: rgba(245, 240, 232, 0.55);
+    font-size: clamp(1.05rem, 2vw, 1.45rem);
+    line-height: 1.25;
   }
-  .peak--ours .peak__v { color: var(--accent); }
-
-  .peak__n {
-    position: absolute;
-    top: calc(100% + 9px);
-    left: 0;
-    right: 0;
-    font-size: 10px;
-    line-height: 1.35;
-    text-align: center;
-    color: rgba(245, 240, 232, 0.4);
-    overflow-wrap: anywhere;
-  }
-
-  .ridge__cap {
-    margin-top: calc(var(--unit) * 11);
-    font-size: 12px;
-    letter-spacing: 0.12em;
+  .row__ja { font-size: 12px; color: var(--mute-on-paper); margin-top: 3px; }
+  .row__ours {
+    display: inline-block;
+    margin-top: calc(var(--unit) * 1.5);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.34);
+    color: var(--accent);
   }
-  .ridge__note {
-    margin-top: calc(var(--unit) * 4);
-    color: rgba(245, 240, 232, 0.6);
-    max-width: 58ch;
+
+  .bar {
+    height: 8px;
+    background: rgba(26, 48, 40, 0.12);
+    overflow: hidden;
+  }
+  .bar__fill { display: block; height: 100%; background: var(--accent); }
+  .row__stat { margin-top: calc(var(--unit) * 1.5); font-size: 14px; color: var(--mute-on-paper); }
+  .row__stat strong {
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: 20px;
+    color: var(--ink-on-paper);
+  }
+  .row__stat--tbc { margin-top: 0; font-style: italic; opacity: 0.65; }
+  .row__long { margin-top: calc(var(--unit) * 1.5); font-size: 13px; color: var(--mute-on-paper); }
+  .row__long strong {
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: 17px;
+    color: var(--ink-on-paper);
+    margin-right: 6px;
+  }
+
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+  .chips li { font-size: 13px; color: var(--ink-on-paper); }
+  .chips li::before { content: '— '; color: var(--accent); }
+
+  .row__note {
+    grid-column: 1 / -1;
+    margin-top: calc(var(--unit) * 1);
+    max-width: 78ch;
     font-size: 15px;
+    color: var(--mute-on-paper);
   }
 
   .hakuba { background: var(--ground); }
   .hakuba__h { margin-top: calc(var(--unit) * 5); }
   .hakuba__b { margin-top: calc(var(--unit) * 3); }
-  .hakuba__stat {
-    margin-top: calc(var(--unit) * 3);
-    font-family: var(--serif);
-    font-weight: var(--serif-weight);
-    color: var(--accent);
-  }
 
-  @media (max-width: 700px) {
-    .ridge { height: 34vh; min-height: 190px; overflow-x: auto; }
-    .peak { min-width: 26px; }
-    .peak__n { font-size: 9px; }
+  @media (max-width: 900px) {
+    .row { grid-template-columns: 1fr 1fr; }
+    .chips { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; gap: calc(var(--unit) * 2); }
+  }
+  @media (max-width: 600px) {
+    .row { grid-template-columns: 1fr; gap: calc(var(--unit) * 2); }
   }
 </style>
