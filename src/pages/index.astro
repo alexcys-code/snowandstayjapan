@@ -32,10 +32,9 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <section class="apertures" data-enter="recede" aria-label="Stay, ski, rest">
+  <section id="how" class="apertures" data-enter="recede" aria-label="Stay, ski, rest">
     <article class="aperture aperture--1" tabindex="0">
       <img class="shot" src={`${base}img/bedroom.jpg`} alt="A bedroom in the kominka — timber beams and made-up beds" loading="lazy" />
-      <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apStayLabel">You sleep here</span>
         <span class="aperture__name" data-i18n="apStayName">A whole house</span>
@@ -43,7 +42,6 @@ const base = import.meta.env.BASE_URL;
     </article>
     <article class="aperture aperture--2" tabindex="0">
       <img class="shot" src={`${base}img/kurumayama.webp`} alt="Open slopes at Kurumayama" loading="lazy" />
-      <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apSkiLabel">You ski here</span>
         <span class="aperture__name" data-i18n="apSkiName">Quiet beginner slopes</span>
@@ -51,7 +49,6 @@ const base = import.meta.env.BASE_URL;
     </article>
     <article class="aperture aperture--3" tabindex="0">
       <img class="shot" src={`${base}img/narai.webp`} alt="The old post town at Narai-juku under snow" loading="lazy" />
-      <div class="aperture__panel"></div>
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apRestLabel">You rest here</span>
         <span class="aperture__name" data-i18n="apRestName">Onsen and old towns</span>
@@ -125,34 +122,36 @@ const base = import.meta.env.BASE_URL;
   .promise__body h2::first-letter { color: var(--accent); }
 
   .apertures {
-    position: relative;
-    display: grid;
-    place-items: center;
-    min-height: 96vh;
-    padding: var(--inset);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--unit) * 2);
+    padding: calc(var(--unit) * 12) var(--inset);
     background: var(--ground);
   }
   .aperture {
-    position: absolute;
+    position: relative;
     display: flex;
     align-items: flex-end;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     border: var(--hair) solid var(--sage);
     overflow: hidden;
     cursor: default;
   }
-  .aperture--1 { width: min(88vw, 960px); aspect-ratio: 16 / 9; }
-  .aperture--2 { width: min(64vw, 690px); aspect-ratio: 16 / 9; }
-  .aperture--3 { width: min(41vw, 440px); aspect-ratio: 16 / 9; border-color: var(--accent); }
+  .aperture--1 { max-width: 900px; }
+  .aperture--2 { max-width: 720px; }
+  .aperture--3 { max-width: 560px; border-color: var(--accent); }
 
-  .aperture__panel {
+  .aperture::before {
+    content: '';
     position: absolute;
     inset: 0;
-    background: var(--paper);
-    transition: transform var(--t-slow) var(--ease);
     z-index: 1;
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0) 45%, rgba(14, 14, 14, 0.72) 100%);
   }
-  .aperture:hover .aperture__panel,
-  .aperture:focus-visible .aperture__panel { transform: translateX(-101%); }
+  .aperture .shot { transition: transform var(--t-slow) var(--ease); }
+  .aperture:hover .shot { transform: scale(1.03); }
 
   .aperture__label {
     position: relative;
@@ -208,17 +207,9 @@ const base = import.meta.env.BASE_URL;
   }
 
   @media (max-width: 860px) {
-    .apertures {
-      display: flex;
-      flex-direction: column;
-      gap: calc(var(--unit) * 3);
-      min-height: 0;
-      padding: calc(var(--unit) * 8) var(--inset);
-    }
-    .aperture,
+    .apertures { padding: calc(var(--unit) * 8) var(--inset); }
     .aperture--1,
     .aperture--2,
-    .aperture--3 { position: relative; width: 100%; }
-    .aperture__panel { display: none; }
+    .aperture--3 { max-width: 100%; }
   }
 </style>
