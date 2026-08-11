@@ -37,9 +37,35 @@ const notes = [
     </aside>
   </section>
 
-  <section class="section paper closing" data-enter="seam">
+  <section class="section paper sia" data-enter="seam">
     <hr class="rule seam-rule" />
-    <div class="seam-body">
+    <div class="seam-body sia__body">
+      <p class="eyebrow" data-i18n="abSiaEyebrow">If you want something to show for it</p>
+      <h2 class="display sia__title" data-i18n="abSiaTitle">You can take a ski badge while you are here.</h2>
+      <p class="lede sia__lede" data-i18n="abSiaBody">
+        The Professional Ski Instructors Association of Japan runs internationally recognised technical certifications, including a junior grade for children.
+      </p>
+    </div>
+  </section>
+
+  <section class="section nonski" data-enter="settle">
+    <p class="eyebrow" data-i18n="abNonEyebrow">For the half of the group that does not ski</p>
+    <h2 class="display nonski__title" data-i18n="abNonTitle">
+      There is a whole winter that has nothing to do with skiing.
+    </h2>
+    <p class="lede nonski__lede" data-i18n="abNonBody">
+      Nobody should spend the week in a canteen waiting for the others.
+    </p>
+    <ul class="nonski__list">
+      <li data-i18n="abAct1">Strawberry picking in a heated greenhouse</li>
+      <li data-i18n="abAct2">Ice fishing for wakasagi on a frozen lake</li>
+      <li data-i18n="abAct3">Snowmobile rides</li>
+      <li data-i18n="abAct4">Snowshoe walks through the birch forest</li>
+    </ul>
+  </section>
+
+  <section class="section paper closing" data-enter="aperture">
+    <div>
       <img class="closing__shot" src={`${base}img/window-view.jpg`} alt="The snowy peaks seen from a window of the house" loading="lazy" />
     </div>
   </section>
@@ -90,6 +116,32 @@ const notes = [
   }
   .note__n { font-size: 13px; font-weight: 700; }
   .note__b { font-size: 13px; color: var(--mute-on-paper); margin-top: 4px; }
+
+  .sia__body { padding-top: calc(var(--unit) * 6); max-width: 70ch; }
+  .sia__title { margin-top: calc(var(--unit) * 2); }
+  .sia__lede { margin-top: calc(var(--unit) * 3); }
+
+  .nonski { background: var(--ground); }
+  .nonski__title { margin-top: calc(var(--unit) * 2); max-width: 22ch; }
+  .nonski__lede { margin-top: calc(var(--unit) * 3); }
+  .nonski__list {
+    list-style: none;
+    margin: calc(var(--unit) * 5) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: calc(var(--unit) * 2) calc(var(--unit) * 5);
+    max-width: 76ch;
+  }
+  .nonski__list li {
+    padding-top: calc(var(--unit) * 1.5);
+    border-top: var(--hair) solid rgba(138, 154, 143, 0.4);
+    font-size: 15px;
+    color: var(--ink-on-ground);
+  }
+  @media (max-width: 640px) {
+    .nonski__list { grid-template-columns: 1fr; }
+  }
 
   .closing { padding-top: 0; }
   .closing__shot {

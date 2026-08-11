@@ -16,18 +16,6 @@ export interface Stay {
 
 export const stays: Stay[] = [
   {
-    slug: 'kobuchizawa',
-    name: 'Grand Mercure Yatsugatake',
-    image: 'grand-mercure.jpg',
-    open: true,
-    keys: {
-      location: 'sy2Location',
-      dates: 'sy2Dates',
-      meta: 'sy2Meta',
-      blurb: 'sy2Blurb',
-    },
-  },
-  {
     slug: 'tateshina',
     name: 'Kominka Kozumi',
     image: 'house-exterior.jpg',
@@ -37,6 +25,18 @@ export const stays: Stay[] = [
       dates: 'sy1Dates',
       meta: 'sy1Meta',
       blurb: 'sy1Blurb',
+    },
+  },
+  {
+    slug: 'kobuchizawa',
+    name: 'Grand Mercure Yatsugatake',
+    image: 'grand-mercure.jpg',
+    open: true,
+    keys: {
+      location: 'sy2Location',
+      dates: 'sy2Dates',
+      meta: 'sy2Meta',
+      blurb: 'sy2Blurb',
     },
   },
 ];
