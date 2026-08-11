@@ -14,25 +14,25 @@ const works = [
 const legs = [
   { n: 'g1n', nf: 'Shinjuku, Tokyo', b: 'g1b', bf: 'Hop on the Azusa express. No changes, about 2 hours.' },
   { n: 'g2n', nf: 'Chino station', b: 'g2b', bf: 'Your nearest station. We meet you here and drive you the last 25 minutes to the door.' },
-  { n: 'g3n', nf: 'The house · all week', b: 'g3b', bf: 'Ski days, onsen days, and Christmas dinner at home.' },
+  { n: 'g3n', nf: 'The house · all week', b: 'g3b', bf: 'Ski days, onsen days, and dinner back at the house.' },
   { n: 'g4n', nf: 'Back to Tokyo', b: 'g4b', bf: 'We drive you to the station. Same easy train, about 2 hours.' },
 ];
 
 const days = [
-  { d: 'Dec 23', k: 'd23', f: 'Train from Tokyo up to Nagano. Settled in before dark.' },
-  { d: 'Dec 24', k: 'd24', f: 'First ski lesson. Everyone else takes the cable car up for the view.' },
-  { d: 'Dec 25', k: 'd25', f: 'Christmas Day at Lake Suwa — a walk and a hot spring. Dinner back at the house.' },
-  { d: 'Dec 26', k: 'd26', f: 'Back on snow — and suddenly the kids are linking turns.' },
-  { d: 'Dec 27', k: 'd27', f: 'The old post town in the snow. Bring a camera.' },
-  { d: 'Dec 28', k: 'd28', f: 'Last ski lesson, then something hot on the summit terrace.' },
-  { d: 'Dec 29', k: 'd29', f: 'Back to Tokyo, in time for lunch.' },
+  { d: 'Day 1', k: 'd23', f: 'Train from Tokyo up to Nagano. Settled in before dark.' },
+  { d: 'Day 2', k: 'd24', f: 'First ski lesson. Everyone else takes the cable car up for the view.' },
+  { d: 'Day 3', k: 'd25', f: 'A day at Lake Suwa — a walk and a hot spring. Dinner back at the house.' },
+  { d: 'Day 4', k: 'd26', f: 'Back on snow — and suddenly the kids are linking turns.' },
+  { d: 'Day 5', k: 'd27', f: 'The old post town in the snow. Bring a camera.' },
+  { d: 'Day 6', k: 'd28', f: 'Last ski lesson, then something hot on the summit terrace.' },
+  { d: 'Day 7', k: 'd29', f: 'Back to Tokyo, in time for lunch.' },
 ];
 ---
 
 <Layout active="stay" title="The week">
   <section class="monument" data-enter="aperture">
     <p class="eyebrow" data-i18n="stayPlace">Tateshina · Nagano</p>
-    <h1 class="monument__dates" data-i18n="stayDates">12.23 — 29</h1>
+    <h1 class="monument__dates" data-i18n="stayDates">Dec — Mar</h1>
   </section>
 
   <section class="section paper problem" data-enter="slide-screen">
@@ -80,7 +80,7 @@ const days = [
     </div>
   </section>
 
-  <Pillow key="restTwo" fallback="Christmas morning happens in a living room." tone="ground" align="start" mark="tr" />
+  <Pillow key="restTwo" fallback="The hours that are not on snow still count." tone="ground" align="start" mark="tr" />
 
   <section class="day" data-enter="split" aria-label="The same afternoon">
     <div class="day__col col-a">
@@ -163,8 +163,8 @@ const days = [
   </section>
 
   <section class="section ask" data-enter="settle">
-    <h2 class="display" data-i18n="ctaTitle">Christmas dates are open.</h2>
-    <p class="lede ask__lede" data-i18n="ctaBody">
+    <h2 class="display" data-i18n="inviteTitle">The season is open.</h2>
+    <p class="lede ask__lede" data-i18n="inviteBody">
       Tell us how many are travelling and how many want to ski.
     </p>
     <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="inviteCta">DM us “SNOW”</a>

@@ -2,7 +2,7 @@ export interface Stay {
   slug: string;
   /** Proper noun — not translated. */
   name: string;
-  /** File in public/img. Omitted for stays not yet open. */
+  /** File in public/img. Omitted for bases not yet open. */
   image?: string;
   open: boolean;
   /** Keys into copy.ts, so every string stays in the one dictionary. */
@@ -15,6 +15,18 @@ export interface Stay {
 }
 
 export const stays: Stay[] = [
+  {
+    slug: 'kobuchizawa',
+    name: 'Grand Mercure Yatsugatake',
+    image: 'grand-mercure.jpg',
+    open: true,
+    keys: {
+      location: 'sy2Location',
+      dates: 'sy2Dates',
+      meta: 'sy2Meta',
+      blurb: 'sy2Blurb',
+    },
+  },
   {
     slug: 'tateshina',
     name: 'Kominka Kozumi',

@@ -11,10 +11,10 @@ const base = import.meta.env.BASE_URL;
       <img class="shot" src={`${base}img/house-exterior.jpg`} alt="" fetchpriority="high" />
       <div class="scrim"></div>
       <div class="threshold__copy">
-        <p class="eyebrow" data-i18n="homeEyebrow">Family ski weeks · Nagano, Japan</p>
-        <h1 class="threshold__title" data-i18n="homeTitle">A whole house in the snow, and nobody else in it.</h1>
+        <p class="eyebrow" data-i18n="homeEyebrow">Ski weeks with coaching · Nagano, Japan</p>
+        <h1 class="threshold__title" data-i18n="homeTitle">A week on the snow, with a coach on it every day.</h1>
         <p class="threshold__lede" data-i18n="homeLede">
-          We rent you an old Japanese country house for a week, drive you to the slopes and back, and put a coach on the snow with you. Most of our guests have never skied before.
+          Pick a base — a resort hotel, or a whole farmhouse to yourselves. We drive you to the slopes and back, put a coach on the snow with you every ski day, and give the rest days to hot springs and old towns. Most of our guests have never skied before.
         </p>
       </div>
     </div>
@@ -25,9 +25,9 @@ const base = import.meta.env.BASE_URL;
   <section class="promise section paper" data-enter="seam">
     <hr class="rule seam-rule" />
     <div class="seam-body promise__body">
-      <h2 class="display" data-i18n="promiseTitle">One house. We do all the driving.</h2>
+      <h2 class="display" data-i18n="promiseTitle">One base. We do all the driving.</h2>
       <p class="lede promise__lede" data-i18n="promiseBody">
-        One group per house, one week at a time. We meet you at the station, run you to the slopes every ski day, take you to the hot springs and the old towns on the rest days, and get you back to the train at the end.
+        You take one train out of Tokyo and we meet you at the station. After that every transfer is ours — the daily run to the slopes, the onsen and old-town days, and the ride out at the end.
       </p>
     </div>
   </section>
@@ -36,12 +36,12 @@ const base = import.meta.env.BASE_URL;
     <article class="aperture aperture--1" tabindex="0">
       <img class="shot" src={`${base}img/bedroom.jpg`} alt="A bedroom in the kominka — timber beams and made-up beds" loading="lazy" />
       <div class="aperture__label">
-        <span class="eyebrow" data-i18n="apStayLabel">You sleep here</span>
-        <span class="aperture__name" data-i18n="apStayName">A whole house</span>
+        <span class="eyebrow" data-i18n="apStayLabel">Your base</span>
+        <span class="aperture__name" data-i18n="apStayName">A hotel or a farmhouse</span>
       </div>
     </article>
     <article class="aperture aperture--2" tabindex="0">
-      <img class="shot" src={`${base}img/kurumayama.webp`} alt="Open slopes at Kurumayama" loading="lazy" />
+      <img class="shot" src={`${base}img/kiyosato.jpg`} alt="Skiers on a wide beginner slope with Mount Fuji beyond" loading="lazy" />
       <div class="aperture__label">
         <span class="eyebrow" data-i18n="apSkiLabel">You ski here</span>
         <span class="aperture__name" data-i18n="apSkiName">Quiet beginner slopes</span>
@@ -56,7 +56,7 @@ const base = import.meta.env.BASE_URL;
     </article>
   </section>
 
-  <Pillow key="restTwo" fallback="Mornings happen in a living room, not a hotel corridor." tone="paper" align="start" mark="tr" />
+  <Pillow key="restTwo" fallback="The hours that are not on snow still count." tone="paper" align="start" mark="tr" />
 
   <section class="invite section" data-enter="settle">
     <h2 class="display invite__title" data-i18n="inviteTitle">Tell us when, and who has never skied.</h2>
@@ -64,9 +64,9 @@ const base = import.meta.env.BASE_URL;
       We build the week around your group — your dates, how many of you, how many have never stood on skis. Send us that and we will send back a plan with a price on it.
     </p>
     <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="inviteCta">DM us “SNOW”</a>
-    <a class="invite__open" href={`${base}stays/tateshina/`}>
+    <a class="invite__open" href={`${base}stays/`}>
       <span class="invite__dot" aria-hidden="true"></span>
-      <span data-i18n="homeOpenNow">Open now — Kominka Kozumi, Tateshina · Dec 23 – 29</span>
+      <span data-i18n="homeOpenNow">Two bases open — Kobuchizawa and Tateshina</span>
     </a>
   </section>
 </Layout>

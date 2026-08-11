@@ -1,0 +1,205 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Pillow from '../../components/Pillow.astro';
+import { INSTAGRAM } from '../../data/copy';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout active="stay" title="Grand Mercure Yatsugatake">
+  <section class="monument" data-enter="aperture">
+    <p class="eyebrow" data-i18n="gmPlace">Kobuchizawa · Yatsugatake</p>
+    <h1 class="monument__dates" data-i18n="gmDates">Dec — Mar</h1>
+  </section>
+
+  <section class="section paper base" data-enter="seam">
+    <hr class="rule seam-rule" />
+    <div class="seam-body base__body">
+      <p class="eyebrow" data-i18n="gmBaseEyebrow">Your base · Kobuchizawa</p>
+      <h2 class="display" data-i18n="gmBaseTitle">A resort hotel, ten minutes from the station.</h2>
+      <p class="lede base__lede" data-i18n="gmBaseBody">
+        Grand Mercure Yatsugatake Resort &amp; Spa, four stars, about ten minutes by car from Kobuchizawa.
+      </p>
+      <p class="base__tags" data-i18n="sy2Meta">★★★★ · dinner and breakfast · hot spring</p>
+      <img class="base__shot" src={`${base}img/grand-mercure.jpg`} alt="Grand Mercure Yatsugatake with the mountains behind" loading="lazy" />
+    </div>
+  </section>
+
+  <Pillow key="restOne" fallback="Snow out the front door." tone="ground" align="end" mark="br" />
+
+  <section class="day" data-enter="split" aria-label="Ski days">
+    <div class="day__col col-a">
+      <img class="day__shot" src={`${base}img/nobeyama.jpg`} alt="A quiet chairlift at Nobeyama with Yatsugatake beyond" loading="lazy" />
+      <span class="eyebrow" data-i18n="gmSki1Time">About 35 min by car</span>
+      <h2 class="day__h" data-i18n="gmSki1Name">Châteraisé Ski Valley Nobeyama</h2>
+      <p class="day__b" data-i18n="gmSki1Body">
+        Wide, quiet beginner terrain at high altitude, so the snow holds well into the season.
+      </p>
+    </div>
+    <div class="day__seam" aria-hidden="true"></div>
+    <div class="day__col col-b">
+      <img class="day__shot" src={`${base}img/kiyosato.jpg`} alt="Skiers on a wide slope at Kiyosato with Mount Fuji beyond" loading="lazy" />
+      <span class="eyebrow" data-i18n="gmSki2Time">About 25 min by car</span>
+      <h2 class="day__h" data-i18n="gmSki2Name">Sun Meadows Kiyosato</h2>
+      <p class="day__b" data-i18n="gmSki2Body">
+        The one for non-skiers. A sightseeing lift runs to the 1,900 m view terrace in ten minutes.
+      </p>
+    </div>
+    <p class="day__join" data-i18n="gmSkiClose">
+      A coach is on the snow every ski day, whatever the level.
+    </p>
+  </section>
+
+  <Pillow key="restTwo" fallback="The hours that are not on snow still count." tone="ground" align="start" mark="tr" />
+
+  <section class="section paper getting" data-enter="seam">
+    <hr class="rule seam-rule" />
+    <div class="seam-body">
+      <p class="eyebrow" data-i18n="gmInEyebrow">Getting in</p>
+      <h2 class="display getting__title" data-i18n="gmInTitle">Shinjuku to the hotel, one train and a car.</h2>
+      <p class="lede getting__body" data-i18n="gmInBody">
+        Limited Express Azusa runs direct from Shinjuku to Kobuchizawa in about one hour fifty-five.
+      </p>
+    </div>
+  </section>
+
+  <section class="section onward" data-enter="settle">
+    <p class="eyebrow" data-i18n="gmOutEyebrow">Getting out</p>
+    <h2 class="display onward__title" data-i18n="gmOutTitle">On to Kyoto, if you want it.</h2>
+    <p class="lede onward__body" data-i18n="gmOutBody">
+      Car to Shizuoka in about two and a half hours, then the Shinkansen to Kyoto in one hour fifteen.
+    </p>
+  </section>
+
+  <section class="section paper fuji" data-enter="dissolve">
+    <div class="fuji__grid">
+      <img class="fuji__shot" src={`${base}img/kawaguchiko.jpg`} alt="Mount Fuji across Lake Kawaguchiko at dusk" loading="lazy" />
+      <div class="fuji__copy">
+        <p class="eyebrow" data-i18n="gmFujiEyebrow">Add on</p>
+        <h2 class="fuji__title" data-i18n="gmFujiTitle">A separate day at Fuji.</h2>
+        <p class="fuji__body" data-i18n="gmFujiBody">
+          Lake Kawaguchiko is about an hour and twenty by car.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ask" data-enter="settle">
+    <h2 class="display" data-i18n="inviteTitle">The season is open.</h2>
+    <p class="lede ask__lede" data-i18n="inviteBody">
+      Tell us how many are travelling and how many want to ski.
+    </p>
+    <a class="cta" href={INSTAGRAM} rel="noopener noreferrer" target="_blank" data-i18n="inviteCta">DM us “SNOW”</a>
+  </section>
+</Layout>
+
+<style>
+  .monument {
+    min-height: 78vh;
+    padding: var(--inset);
+    background: var(--ground);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: calc(var(--unit) * 2);
+  }
+  .monument__dates {
+    font-size: clamp(3rem, 14vw, 10rem);
+    line-height: 0.94;
+    color: var(--ink-on-ground);
+  }
+
+  .base__body { padding-top: calc(var(--unit) * 6); max-width: 72ch; }
+  .base__body h2 { margin-top: calc(var(--unit) * 2); }
+  .base__lede { margin-top: calc(var(--unit) * 3); }
+  .base__tags {
+    margin-top: calc(var(--unit) * 3);
+    font-size: 13px;
+    color: var(--mute-on-paper);
+  }
+  .base__shot {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    margin-top: calc(var(--unit) * 5);
+    border: var(--hair) solid var(--sage);
+  }
+
+  .day {
+    display: grid;
+    grid-template-columns: 1fr var(--hair) 1fr;
+    background: var(--paper);
+    color: var(--ink-on-paper);
+  }
+  .day__col {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) * 1.5);
+    padding: var(--inset);
+  }
+  .day__seam { background: var(--accent); }
+  .day__shot {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border: var(--hair) solid rgba(26, 48, 40, 0.2);
+    margin-bottom: calc(var(--unit) * 2);
+  }
+  .day__h { font-size: clamp(1.25rem, 2.4vw, 1.9rem); max-width: 20ch; }
+  .day__b { color: var(--mute-on-paper); max-width: 44ch; font-size: 16px; }
+  .day__join {
+    grid-column: 1 / -1;
+    border-top: var(--hair) solid rgba(26, 48, 40, 0.2);
+    padding: calc(var(--unit) * 5) var(--inset);
+    text-align: center;
+    font-family: var(--serif);
+    font-weight: var(--serif-weight);
+    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
+  }
+
+  .getting__title { margin-top: calc(var(--unit) * 2); }
+  .getting__body { margin-top: calc(var(--unit) * 3); }
+
+  .onward { background: var(--ground); }
+  .onward__title { margin-top: calc(var(--unit) * 2); }
+  .onward__body { margin-top: calc(var(--unit) * 3); }
+
+  .fuji__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: calc(var(--unit) * 6);
+    align-items: center;
+  }
+  .fuji__shot {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    border: var(--hair) solid var(--sage);
+  }
+  .fuji__title {
+    font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+    margin-top: calc(var(--unit) * 1.5);
+  }
+  .fuji__body {
+    margin-top: calc(var(--unit) * 2);
+    color: var(--mute-on-paper);
+    font-size: 16px;
+  }
+
+  .ask {
+    background: var(--ground);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc(var(--unit) * 3);
+  }
+  .ask__lede { max-width: 46ch; }
+
+  @media (max-width: 860px) {
+    .fuji__grid { grid-template-columns: 1fr; gap: calc(var(--unit) * 3); }
+  }
+  @media (max-width: 760px) {
+    .day { grid-template-columns: 1fr; }
+    .day__seam { height: 2px; }
+  }
+</style>
