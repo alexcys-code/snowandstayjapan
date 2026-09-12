@@ -12,7 +12,7 @@
 
 ## Why This Director
 
-The product is a 150-year-old house. Ozu is the cinema of houses — nested shoji and fusuma doorways, rooms seen through rooms, families arranged inside rectangles. The design device and the product are physically the same thing. No other director in the library makes the architecture of the offering *be* the compositional system.
+The product is a 140-year-old house. Ozu is the cinema of houses — nested shoji and fusuma doorways, rooms seen through rooms, families arranged inside rectangles. The design device and the product are physically the same thing. No other director in the library makes the architecture of the offering *be* the compositional system.
 
 The secondary reason is palette. Ozu chose Agfacolor stock specifically because it rendered red better than Kodak or Fuji — he engineered his entire technical pipeline around one accent colour sitting in a muted field. That is already this brand's palette: terracotta against forest green and cream.
 
